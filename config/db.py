@@ -50,6 +50,47 @@ class UserConnection():
         except psycopg2.Error as err:
             print("Error al leer datos: ", err)
 
+    def delete_id(self, table_name: str, table_id: int):
+        try:
+            with self.conn.cursor() as cur:
+                query = f"DELETE FROM public.{table_name} WHERE id = {table_id}"
+                cur.execute(query)
+                self.conn.commit()
+                print(f"Registro con id {table_id} eliminado correctamente de la tabla {table_name}.")
+        except psycopg2.Error as err:
+            print("Error al eliminar datos: ", err)
+
+    def delete_cedula(self, table_name: str, table_cedula: int):
+        try:
+            with self.conn.cursor() as cur:
+                query = f"DELETE FROM public.{table_name} WHERE cedula = {table_cedula}"
+                cur.execute(query)
+                self.conn.commit()
+                print(f"Registro con cedula {table_cedula} eliminado correctamente de la tabla {table_name}.")
+        except psycopg2.Error as err:
+            print("Error al eliminar datos: ", err)
+
+    def update_field_id(self, table_name: str, table_id: int, field_name: str, new_value):
+        try:
+            with self.conn.cursor() as cur:
+                query = f"UPDATE public.{table_name} SET {field_name} = %s WHERE id = %s"
+                cur.execute(query, (new_value, table_id))
+                self.conn.commit()
+                print(f"Registro con id {table_id} actualizado correctamente de la tabla {table_name}.")
+        except psycopg2.Error as err:
+            print("Error al actualizar datos: ", err)
+
+    def update_field_cedula(self, table_name: str, table_cedula: int, field_name: str, new_value):
+        try:
+            with self.conn.cursor() as cur:
+                query = f"UPDATE public.{table_name} SET {field_name} = %s WHERE cedula = %s"
+                cur.execute(query, (new_value, table_cedula))
+                self.conn.commit()
+                print(f"Registro con cedula {table_cedula} actualizado correctamente de la tabla {table_name}.")
+        except psycopg2.Error as err:
+            print("Error al actualizar datos: ", err)
+            
+
     #Cierra la conexion a la BDD al finalizar la ejecucion
     def __del__(self):
         self.conn.close()    
