@@ -37,7 +37,7 @@ class SchemaMatrimonios(BaseModel):
     contrayente1_padre2_cedula: Optional[int] = None
     contrayente2_padre1_cedula: Optional[int] = None
     contrayente2_padre2_cedula: Optional[int] = None
-    fecha_ActaMatrimonio: date 
+    fecha_ActaMatrimonio: date
 
 class SchemaDivorcios(BaseModel):
     id: Optional[int] = None
