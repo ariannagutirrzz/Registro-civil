@@ -5,11 +5,6 @@ from config.db import UserConnection
 user = APIRouter() #Crea un enrutador llamado "user"
 conn = UserConnection() #Instancia de la conexion a la BDD
 
-#Ruta base o default
-@user.get("/")
-def root():
-    return "Registro Civil"
-
 #NACIMIENTOS
 #Ruta para insertar nacimientos
 @user.post("/Nacimientos/insert")
