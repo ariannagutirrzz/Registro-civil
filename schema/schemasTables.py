@@ -37,13 +37,13 @@ class SchemaMatrimonios(BaseModel):
     contrayente1_padre2_cedula: Optional[int] = None
     contrayente2_padre1_cedula: Optional[int] = None
     contrayente2_padre2_cedula: Optional[int] = None
-    fecha_actamatrimonio: date #En la BDD sale como fecha_ActaMatrimonio, editenla y pongan todo minusculas
+    fecha_ActaMatrimonio: date 
 
 class SchemaDivorcios(BaseModel):
     id: Optional[int] = None
     divorciado1_cedula: Optional[int] = None
     divorciado2_cedula: Optional[int] = None
-    fecha_actadivorcio: date #En la BDD sale como fecha_ActaDivorcio, editenla y pongan todo minusculas
+    fecha_ActaDivorcio: date 
 
 class SchemaDefunciones(BaseModel):
     cedula: int

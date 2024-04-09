@@ -28,7 +28,7 @@ class UserConnection():
     def insert_into_table(self, table_name: str, values: dict):
         try:
             with self.conn.cursor() as cur:
-                columns = ', '.join(values.keys())
+                columns = ', '.join([f'"{k}"' for k in values.keys()]) #Le agrega comillas dobles a cada columna de la BDD, ya que pgadmine es case sesitive
                 placeholders = ', '.join(['%s'] * len(values))
                 query = f"INSERT INTO public.{table_name} ({columns}) VALUES ({placeholders})"
                 cur.execute(query, tuple(values.values()))
@@ -37,6 +37,7 @@ class UserConnection():
         except psycopg2.Error as err:
             print(f"Error al insertar datos: {err}")
 
+    #Query para leer los datos
     def read(self, table_name: str):
         try:
             with self.conn.cursor() as cur:
@@ -50,6 +51,7 @@ class UserConnection():
         except psycopg2.Error as err:
             print("Error al leer datos: ", err)
 
+    #Query para eliminar datos por id
     def delete_id(self, table_name: str, table_id: int):
         try:
             with self.conn.cursor() as cur:
@@ -60,6 +62,7 @@ class UserConnection():
         except psycopg2.Error as err:
             print("Error al eliminar datos: ", err)
 
+    #Query para eliminar datos por cedula
     def delete_cedula(self, table_name: str, table_cedula: int):
         try:
             with self.conn.cursor() as cur:
@@ -70,6 +73,7 @@ class UserConnection():
         except psycopg2.Error as err:
             print("Error al eliminar datos: ", err)
 
+    #Query para actualizar datos por id
     def update_field_id(self, table_name: str, table_id: int, field_name: str, new_value):
         try:
             with self.conn.cursor() as cur:
@@ -80,6 +84,7 @@ class UserConnection():
         except psycopg2.Error as err:
             print("Error al actualizar datos: ", err)
 
+    #Query para actualizar datos por id
     def update_field_cedula(self, table_name: str, table_cedula: int, field_name: str, new_value):
         try:
             with self.conn.cursor() as cur:
