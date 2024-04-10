@@ -45,7 +45,7 @@ def insertCiudadanos(ciudadanos: SchemaCiudadanos):
 #Ruta para retornar los valores que hay en la tabla Ciudadanos
 @user.get("/Ciudadanos/read")
 def readCiudadanos():
-    return conn.read('"Ciudadanos"')   
+    return conn.read('"Ciudadanos"')
 
 #Ruta para eliminar algun ciudadano
 @user.delete("/Ciudadanos/delete/{cedula}")

@@ -27,7 +27,7 @@ class SchemaParroquias(BaseModel):
     id: Optional[int] = None
     nombre: str
     estado: str
-    municipio: str    
+    municipio: str
 
 class SchemaMatrimonios(BaseModel):
     id: Optional[int] = None
