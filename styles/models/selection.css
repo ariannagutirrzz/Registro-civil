@@ -19,7 +19,7 @@ body {
     margin: 20px; /* Añade margen entre los elementos */
   }
   
-  a {
+  .a {
     background-color: #4caf50;
     text-decoration: none;
     color: #fff;
@@ -29,7 +29,15 @@ body {
     transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
   }
   
-  a:hover {
+  .a:hover {
     background-color: #45a049; /* Cambio de color de fondo al pasar el ratón */
   }
   
+  .back-button {
+    color: #45a049;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+   
+  }
