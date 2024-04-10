@@ -1,4 +1,5 @@
 import psycopg2
+from flask import Flask, rendertemplate, request
 
 #Clase para la conexion de la base de datos
 class UserConnection():
@@ -8,9 +9,10 @@ class UserConnection():
         try:
             self.conn = psycopg2.connect(
                 host="localhost",
-                database="carnalito_db", #Nombre de la BDD en tu pc
-                user="antonio", #Nombre del user que tengas en tu pc
-                password="123456" #Contrasena que tengas en tu pc
+                database="registro_civil_BDD", #Nombre de la BDD en tu pc
+                user="postgres", #Nombre del user que tengas en tu pc
+                password="Blasty1139", #Contrasena que tengas en tu pc
+                port= "2345"
             )
         except psycopg2.OperationalError as err:
             print(err)
