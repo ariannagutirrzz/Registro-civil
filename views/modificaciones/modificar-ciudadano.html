@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles/models/registration.css">
+    <title>Modificacion</title>
+</head>
+<body>
+    <h1>Datos a modificar: </h1>
+    <form action="../../controllers/modificaciones/modificar-ciudadano.php" method="POST" class="registration-form">
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" id="nombre" required>
+        <label for="cedula">Cedula: </label>
+        <input type="text" name="cedula" id="cedula" required>
+        <label for="sexo">Sexo: </label>
+        <input type="text" name="sexo" id="sexo" required>
+        <label for="fecha_nacimiento">Fecha de nacimiento: </label>
+        <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+        <label for="lugar_nacimiento">Lugar de nacimiento: </label>
+        <input type="text" name="lugar_nacimiento" id="lugar_nacimiento" required>
+        <label for="cedula_padre">Cedula del padre: </label>
+        <input type="text" name="cedula_padre" id="cedula_padre" required>
+        <label for="cedula_madre">Cedula de la madre: </label>
+        <input type="text" name="cedula_madre" id="cedula_madre" required>
+        <label for="cedula_testigo1">Cedula del testigo 1: </label>
+        <input type="text" name="cedula_testigo1" id="cedula_testigo1" required>
+        <label for="cedula_testigo2">Cedula del testigo 2: </label>
+        <input type="text" name="cedula_testigo2" id="cedula_testigo2" required>
+        <input type="submit" value="Modificar">
+</body>
+</html>
