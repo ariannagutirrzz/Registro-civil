@@ -73,7 +73,7 @@ def deleteTestigos(table_cedula: int):
 #Ruta para actulizar algun dato de testigos
 @user.put("/Testigos/update/{cedula}")
 def updateTestigos(cedula: int, testigos: SchemaTestigos):
-    conn.update_field_cedula('"Testigos"', cedula, dict(testigos))
+    conn.update_field_id('"Testigos"', cedula, dict(testigos))
 
 #MATRIMONIOS
 #Ruta para insertar matrimonios
@@ -95,8 +95,8 @@ def deleteMatrimonios(table_id: int):
 
 #Ruta para actulizar algun dato de matrimonio
 @user.put("/Matrimonios/update/{id}")
-def updateMatrimonios(table_id: int, field_name: str, new_value):
-    conn.update_field_id('"Matrimonios"', table_id, field_name, new_value)
+def updateMatrimonios(id: int, matrimnoios: SchemaMatrimonios):
+    conn.update_field_id('"Matrimonios"', id, dict(matrimnoios))
 
 #DIVORCIOS
 #Ruta para insertar divorcios
@@ -118,8 +118,8 @@ def deleteDivorcios(table_id: int):
 
 #Ruta para actulizar algun dato de divorcio
 @user.put("/Divorcios/update/{id}")
-def updateDivorcios(table_id: int, field_name: str, new_value):
-    conn.update_field_id('"Divorcios"', table_id, field_name, new_value)
+def updateDivorcios(id: int, divorcios: SchemaDivorcios):
+    conn.update_field_id('"Divorcios"', id, dict(divorcios))
 
 #DEFUNCIONES
 #Ruta para insertar defuneciones
