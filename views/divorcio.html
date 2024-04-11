@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Divorcio</title>
     <link rel="stylesheet" href="../styles/models/registration.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <h1>Divorcios</h1>
-    <form action="" class="registration-form">
+    <form
+      action=""
+      class="registration-form"
+      method="post"
+      id="form-divorcios"
+    >
 
-        <label for="contrayente">Cedula del Contrayente 1: </label>
-        <input type="text" name="contrayente" id="contrayente">
+        <label for="id_divorcios">ID: </label>
+        <input type="text" name="id" id="id_divorcios">
 
-        <label for="contrayente_padre_1">Cedula del contrayente 2: </label>
-        <input type="text" name="contrayente_padre_1" id="contrayente_padre_1">
+        <label for="cedula_divorciado1">Cedula Esposo: </label>
+        <input type="text" name="divorciado1_cedula" id="cedula_divorciado1">
+
+        <label for="cedula_divorciado2">Cedula Esposa: </label>
+        <input type="text" name="divorciado2_cedula" id="cedula_divorciado2">
 
         <label for="fecha_ActaMatrimonio">Fecha del acta:</label>
         <input type="date" value="2014-06-08" name="fecha_ActaMatrimonio" id="fecha_ActaMatrimonio">
@@ -24,4 +32,28 @@
         <a href="./registro.html" class="back-button">Ir atrás</a>
     </form>
 </body>
+
+<script type="module" src="../api/urls.js"></script>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", (e) => {
+      const miForm = document.getElementById("form-divorcios");
+      miForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(miForm);
+        const jsonData = Object.fromEntries(formData);
+
+        axios
+          .post("http://localhost:8000/Divorcios/insert", jsonData)
+          .then((response) => {
+            console.log(response);
+            alert("Registro exitoso");
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Error al registrar");
+          });
+      });
+    });
+  </script>
 </html>
