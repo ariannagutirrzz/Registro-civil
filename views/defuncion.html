@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Defuncion</title>
     <link rel="stylesheet" href="../styles/models/registration.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <h1>Defunciones</h1>
-    <form action="" class="registration-form">
+    <form 
+    action="" 
+    class="registration-form" 
+    method="post"
+    id="form-defunciones"
+    >
        
         <label for="cedula_defuncion">Cedula: </label>
-        <input type="text" name="cedula_defuncion" id="cedula_defuncion">
+        <input type="number" name="cedula" id="cedula_defuncion">
 
         <label for="fecha_defuncion">Fecha de defunción:</label>
-        <input type="date" value="2014-06-08" name="fecha_defuncion" id="fecha_defuncion">
+        <input type="date" name="fecha_defuncion" id="fecha_defuncion">
+
+        <label for="hora_defuncion">Hora de defunción:</label>
+        <input type="time" name="hora_defuncion" id="hora_defuncion">
 
         <label for="lugar_defuncion">Lugar de defuncion: </label>
         <input type="text" name="lugar_defuncion" id="lugar_defuncion">
@@ -26,11 +34,33 @@
         <label for="causa_defuncion">Causa de muerte: </label>
         <input type="text" name="causa_defuncion" id="causa_defuncion">
 
-        <label for="hora_defuncion" class="hora_defuncion">Hora de defunción:</label>
-        <input type="time" name="hora_defuncion" id="hora_defuncion">
-
         <input type="submit" value="Registrar">
         <a href="./registro.html" class="back-button">Ir atrás</a>
     </form>
 </body>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", (e) => {
+  const miForm = document.getElementById("form-defunciones");
+  miForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(miForm);
+    const jsonData = Object.fromEntries(formData);
+    
+
+    axios
+      .post("http://localhost:8000/Defunciones/insert", jsonData)
+      .then((response) => {
+        console.log(response);
+        alert("Registro exitoso");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Error al registrar");
+      });
+  });
+});
+
+  </script>
 </html>

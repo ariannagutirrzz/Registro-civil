@@ -13,36 +13,36 @@
     <form action="" class="registration-form" id="form-matrimonios" method="post">
 
       <label for="id_matrimonios">ID:</label>
-      <input type="number" name="id_matrimonios" id="id_matrimonios" />
+      <input type="number" name="id" id="id_matrimonios" />
 
       <label for="contrayente">Cedula del Contrayente 1: </label>
-      <input type="number" name="contrayente" id="contrayente" />
+      <input type="number" name="contrayente1_cedula" id="contrayente" />
 
       <label for="Contrayente 2">Cedula del Contrayente 2: </label>
-      <input type="number" name="Contrayente 2" id="Contrayente 2" />
+      <input type="number" name="contrayente2_cedula" id="Contrayente 2" />
 
       <label for="contrayente_padre_1">Cedula de la mama del contrayente 1: </label>
-      <input type="number" name="contrayente_padre_1" id="contrayente_padre_1" />
+      <input type="number" name="contrayente1_padre1_cedula" id="contrayente_padre_1" />
 
       <label for="contrayente_padre_2">Cedula de el papa del contrayente 1: </label>
-      <input type="number" name="contrayente_padre_2" id="contrayente_padre_2" />
+      <input type="number" name="contrayente1_padre2_cedula" id="contrayente_padre_2" />
 
       <label for="contrayente2_padre_1">Cedula de la mama del contrayente 2: </label>
       <input
         type="number"
-        name="contrayente2_padre_1"
+        name="contrayente2_padre1_cedula"
         id="contrayente2_padre_1"
       />
 
       <label for="contrayente2_padre_2">Cedula de el papa del contrayente 2: </label>
       <input
         type="number"
-        name="contrayente2_padre_2"
+        name="contrayente2_padre2_cedula"
         id="contrayente2_padre_2"
       />
 
       <label for="fecha_ActaMatrimonio">Fecha del acta:</label>
-      <input type="date" value="2014-06-08" name="fecha_ActaMatrimonio" id="fecha_ActaMatrimonio">
+      <input type="date" name="fecha_ActaMatrimonio" id="fecha_ActaMatrimonio">
 
 
       <input type="submit" value="Registrar" />
@@ -50,7 +50,6 @@
 
     </form>
     
-    <script type="module" src="../api/urls.js"></script>
   <script>
 
     document.addEventListener("DOMContentLoaded", (e) => {
@@ -59,6 +58,10 @@
         e.preventDefault();
         const formData = new FormData(miForm);
         const jsonData = Object.fromEntries(formData);
+        jsonData.contrayente1_padre1_cedula = parseInt(jsonData.contrayente1_padre1_cedula);
+        jsonData.contrayente1_padre2_cedula = parseInt(jsonData.contrayente1_padre2_cedula);
+        jsonData.contrayente2_padre1_cedula = parseInt(jsonData.contrayente2_padre1_cedula);
+        jsonData.contrayente2_padre2_cedula = parseInt(jsonData.contrayente2_padre2_cedula);
 
         axios
           .post("http://localhost:8000/Matrimonios/insert", jsonData)
