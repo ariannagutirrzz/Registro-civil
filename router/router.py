@@ -95,8 +95,8 @@ def deleteMatrimonios(table_id: int):
 
 #Ruta para actulizar algun dato de matrimonio
 @user.put("/Matrimonios/update/{id}")
-def updateMatrimonios(id: int, matrimnoios: SchemaMatrimonios):
-    conn.update_field_id('"Matrimonios"', id, dict(matrimnoios))
+def updateMatrimonios(id_user: int, matrimnoios: SchemaMatrimonios):
+    conn.update_field_id('"Matrimonios"', id_user, dict(matrimnoios))
 
 #DIVORCIOS
 #Ruta para insertar divorcios
@@ -109,7 +109,7 @@ def insertDivorcios(divorcios: SchemaDivorcios):
 #Ruta para retornar los valores que hay en la tabla Divorcios
 @user.get("/Divorcios/read")
 def readDivorcios():
-    return conn.read('"Divorcios"') 
+    return conn.read('"Divorcios"')
 
 #Ruta para eliminar algun divorcio
 @user.delete("/Divorcios/delete/{id}")
@@ -118,8 +118,8 @@ def deleteDivorcios(table_id: int):
 
 #Ruta para actulizar algun dato de divorcio
 @user.put("/Divorcios/update/{id}")
-def updateDivorcios(id: int, divorcios: SchemaDivorcios):
-    conn.update_field_id('"Divorcios"', id, dict(divorcios))
+def updateDivorcios(id_user: int, divorcios: SchemaDivorcios):
+    conn.update_field_id('"Divorcios"', id_user, dict(divorcios))
 
 #DEFUNCIONES
 #Ruta para insertar defuneciones
@@ -132,7 +132,7 @@ def insertDefunciones(defunciones: SchemaDefunciones):
 #Ruta para retornar los valores que hay en la tabla Defunciones
 @user.get("/Defunciones/read")
 def readDefunciones():
-    return conn.read('"Defunciones"') 
+    return conn.read('"Defunciones"')
 
 #Ruta para eliminar algun testigo
 @user.delete("/Defunciones/delete/{cedula}")
@@ -142,3 +142,4 @@ def deleteDefunciones(table_cedula: int):
 @user.put("/Defunciones/update/{cedula}")
 def updateDefunciones(cedula: int, defunciones: SchemaDefunciones):
     conn.update_field_cedula('"Defunciones"', cedula, dict(defunciones))
+    
