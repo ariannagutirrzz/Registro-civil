@@ -24,7 +24,7 @@ class UserConnection():
             dict(zip([col[0] for col in desc], row))
             for row in cur.fetchall()
         ]
-    
+
     #Query para insertar datos
     def insert_into_table(self, table_name: str, values: dict):
         try:
