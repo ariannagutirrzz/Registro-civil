@@ -5,32 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Matrimonio</title>
     <link rel="stylesheet" href="../styles/models/registration.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
   </head>
   <body>
     <h1>Matrimonios</h1>
-    <form action="" class="registration-form">
-      <label for="contrayente">Nombre del Contrayente 1: </label>
-      <input type="text" name="contrayente" id="contrayente" />
-      <label for="Contrayente 2">Nombre del Contrayente 2: </label>
-      <input type="text" name="Contrayente 2" id="Contrayente 2" />
+    <form action="" class="registration-form" id="form-matrimonios" method="post">
 
-      <label for="contrayente_padre_1">Nombre de la mama del contrayente 1: </label>
-      <input type="text" name="contrayente_padre_1" id="contrayente_padre_1" />
-      <label for="contrayente_padre_2">Nombre de el papa del contrayente 1: </label>
-      <input type="text" name="contrayente_padre_2" id="contrayente_padre_2" />
+      <label for="id_matrimonios">ID:</label>
+      <input type="number" name="id_matrimonios" id="id_matrimonios" />
 
-      <label for="contrayente2_padre_1">Nombre de la mama del contrayente 2: </label>
+      <label for="contrayente">Cedula del Contrayente 1: </label>
+      <input type="number" name="contrayente" id="contrayente" />
+
+      <label for="Contrayente 2">Cedula del Contrayente 2: </label>
+      <input type="number" name="Contrayente 2" id="Contrayente 2" />
+
+      <label for="contrayente_padre_1">Cedula de la mama del contrayente 1: </label>
+      <input type="number" name="contrayente_padre_1" id="contrayente_padre_1" />
+
+      <label for="contrayente_padre_2">Cedula de el papa del contrayente 1: </label>
+      <input type="number" name="contrayente_padre_2" id="contrayente_padre_2" />
+
+      <label for="contrayente2_padre_1">Cedula de la mama del contrayente 2: </label>
       <input
-        type="text"
+        type="number"
         name="contrayente2_padre_1"
         id="contrayente2_padre_1"
       />
-      <label for="contrayente2_padre_2">Nombre de el papa del contrayente 2: </label>
+
+      <label for="contrayente2_padre_2">Cedula de el papa del contrayente 2: </label>
       <input
-        type="text"
+        type="number"
         name="contrayente2_padre_2"
         id="contrayente2_padre_2"
       />
+
       <label for="fecha_ActaMatrimonio">Fecha del acta:</label>
       <input type="date" value="2014-06-08" name="fecha_ActaMatrimonio" id="fecha_ActaMatrimonio">
 
@@ -39,6 +49,29 @@
       <a href="./registro.html" class="back-button">Ir atrás</a>
 
     </form>
+    
+    <script type="module" src="../api/urls.js"></script>
+  <script>
 
+    document.addEventListener("DOMContentLoaded", (e) => {
+      const miForm = document.getElementById("form-matrimonios");
+      miForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(miForm);
+        const jsonData = Object.fromEntries(formData);
+
+        axios
+          .post("http://localhost:8000/Matrimonios/insert", jsonData)
+          .then((response) => {
+            console.log(response);
+            alert("Registro exitoso");
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Error al registrar");
+          });
+      });
+    });
+  </script>
 
 </html>
