@@ -69,6 +69,7 @@
         e.preventDefault();
         const formData = new FormData(miForm);
         const jsonData = Object.fromEntries(formData);
+        console.log (jsonData, "Ari")
 
         axios
           .post("http://localhost:8000/Nacimientos/insert", jsonData)
