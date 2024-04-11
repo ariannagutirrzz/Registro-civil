@@ -26,7 +26,7 @@
         <input type="text" name="divorciado2_cedula" id="cedula_divorciado2">
 
         <label for="fecha_ActaMatrimonio">Fecha del acta:</label>
-        <input type="date" value="2014-06-08" name="fecha_ActaMatrimonio" id="fecha_ActaMatrimonio">
+        <input type="date" name="fecha_ActaMatrimonio" id="fecha_ActaMatrimonio">
 
         <input type="submit" value="Registrar">
         <a href="./registro.html" class="back-button">Ir atrás</a>
@@ -42,7 +42,8 @@
         e.preventDefault();
         const formData = new FormData(miForm);
         const jsonData = Object.fromEntries(formData);
-
+        jsonData.divorciado1_cedula = parseInt(jsonData.divorciado1_cedula);
+        jsonData.divorciado2_cedula = parseInt(jsonData.divorciado2_cedula);
         axios
           .post("http://localhost:8000/Divorcios/insert", jsonData)
           .then((response) => {
