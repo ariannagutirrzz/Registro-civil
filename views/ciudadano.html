@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciudadano</title>
     <link rel="stylesheet" href="../styles/models/registration.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <h1>Ciudadanos </h1>
-    <form action="" class="registration-form">
+    <form action="" class="registration-form" id="form-ciudadanos" method="post">
         <label for="cedula">Cedula:</label>
         <input type="text" name="cedula" id="cedula">
         <label for="nacionalidad">Nacionalidad: </label>
@@ -20,4 +21,28 @@
         <a href="./registro.html" class="back-button">Ir atrás</a>
     </form>
 </body>
+
+<script type="module" src="../api/urls.js"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", (e) => {
+      const miForm = document.getElementById("form-ciudadanos");
+      miForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(miForm);
+        const jsonData = Object.fromEntries(formData);
+
+        axios
+          .post("http://localhost:8000/Ciudadanos/insert", jsonData)
+          .then((response) => {
+            console.log(response);
+            alert("Registro exitoso");
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Error al registrar");
+          });
+      });
+    });
+  </script>
 </html>
