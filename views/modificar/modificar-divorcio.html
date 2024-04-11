@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificacion</title>
+    <link rel="stylesheet" href="../../styles/modificar/modificar.css">
+</head>
+<body>
+    <div>
+        <h1>
+            Datos a modificar:
+        </h1>
+        <form action="../../controllers/modificaciones/modificar-divorcio.php" method="POST" class="registration-form">
+            <label for="cedula_esposo">Cedula del esposo: </label>
+            <input type="text" name="cedula_esposo" id="cedula_esposo" required>
+            <label for="cedula_esposa">Cedula de la esposa: </label>
+            <input type="text" name="cedula_esposa" id="cedula_esposa" required>
+            <label for="fecha_matrimonio">Fecha de matrimonio: </label>
+            <input type="date" name="fecha_matrimonio" id="fecha_matrimonio" required>
+            <label for="fecha_divorcio">Fecha de divorcio: </label>
+            <input type="date" name="fecha_divorcio" id="fecha_divorcio" required>
+            <label for="causa">Causa: </label>
+            <input type="text" name="causa" id="causa" required>
+            <input type="submit" value="Modificar">
+        </form> 
+        <a href="../listado.html" class="back-button">Ir atrás</a>
+    </div>
+</body>
+</html>l

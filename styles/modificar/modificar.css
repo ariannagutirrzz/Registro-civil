@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .registration-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="int"],
+  input[type="date"],
+  input[type="submit"],
+  input[type="time"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  .back-button {
+    color: #45a049;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0.5% auto 0 49%;
+  }
