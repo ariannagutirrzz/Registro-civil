@@ -18,9 +18,6 @@
       <label for="nombre">Nombre:</label>
       <input type="text" name="nombre" id="nombre" />
 
-      <label for="apellido">Apellido:</label>
-      <input type="text" name="apellido" id="apellido" />
-
       <label for="cedula">Cedula:</label>
       <input type="int" name="cedula" id="cedula" />
 
@@ -53,6 +50,11 @@
       <a href="./registro.html" class="back-button">Ir atrás</a>
     </form>
   </body>
+<<<<<<< HEAD
+=======
+
+  <script type="module" src="../api/urls.js"></script>
+>>>>>>> 1993fbb673c9bcedf923179d81d0a94c1d69ae1b
   <script>
 
     document.addEventListener("DOMContentLoaded", (e) => {
@@ -63,7 +65,7 @@
         const jsonData = Object.fromEntries(formData);
 
         axios
-          .post("http://localhost:3000/Nacimientos/insert", jsonData)
+          .post("http://localhost:8000/Nacimientos/insert", jsonData)
           .then((response) => {
             console.log(response);
             alert("Registro exitoso");
