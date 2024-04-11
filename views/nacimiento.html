@@ -1,44 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nacimiento</title>
-    <link rel="stylesheet" href="../styles/models/registration.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../styles/models/registration.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
     <h1>Nacimientos</h1>
-    <form action="" class="registration-form">
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" id="nombre">
+    <form
+      action=""
+      class="registration-form"
+      method="post"
+      id="form-nacimientos"
+    >
+      <label for="nombre">Nombre:</label>
+      <input type="text" name="nombre" id="nombre" />
 
-        <label for="apellido">Apellido:</label>
-        <input type="text" name="apellido" id="apellido">
+      <label for="apellido">Apellido:</label>
+      <input type="text" name="apellido" id="apellido" />
 
-        <label for="cedula">Cedula:</label>
-        <input type="int" name="cedula" id="cedula">
+      <label for="cedula">Cedula:</label>
+      <input type="int" name="cedula" id="cedula" />
 
-        <label for="sexo">Sexo:</label>
-        <input type="text" name="sexo" id="sexo">
+      <label for="sexo">Sexo:</label>
+      <input type="text" name="sexo" id="sexo" />
 
-        <label for="fecha">Fecha de nacimiento:</label>
-        <input type="date" value="2014-06-08" name="fecha" id="fecha">
+      <label for="fecha">Fecha de nacimiento:</label>
+      <input
+        type="date"
+        name="fecha_nacimiento"
+        id="fecha"
+      />
 
-        <label for="lugar">Lugar de nacimiento:</label>
-        <input type="text" name="lugar" id="lugar">
+      <label for="lugar">Lugar de nacimiento:</label>
+      <input type="text" name="lugar_nacimiento" id="lugar" />
 
-        <label for="padre">Nombre del padre:</label>
-        <input type="text" name="padre" id="padre">
+      <label for="cedula_padre">Cedula del padre:</label>
+      <input type="number" name="padre1_cedula" id="cedula_padre" required />
 
-        <label for="madre">Nombre de la madre:</label>
-        <input type="text" name="madre" id="madre">
+      <label for="cedula_madre">Cedula de la madre:</label>
+      <input type="number" name="padre2_cedula" id="cedula_madre" required />
 
-        <label for="-id-parroquia">ID de la parroquia:</label>
-        <input type="text" name="-id-parroquia" id="-id-parroquia">
+      <label for="testigo1">Cedula del padre:</label>
+      <input type="number" name="testigo1_cedula" id="testigo1" required />
 
-        <input type="submit" value="Registrar">
-        <a href="./registro.html" class="back-button">Ir atrás</a>
+      <label for="testigo2">Cedula de la madre:</label>
+      <input type="number" name="testigo2_cedula" id="testigo2" required />
 
+      <input type="submit" value="Registrar" />
+      <a href="./registro.html" class="back-button">Ir atrás</a>
     </form>
-</body>
+  </body>
+  <script type="module" src="../api/urls.js"></script>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", (e) => {
+      const miForm = document.getElementById("form-nacimientos");
+      miForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(miForm);
+        const jsonData = Object.fromEntries(formData);
+
+        axios
+          .post("http://localhost:3000/Nacimientos/insert", jsonData)
+          .then((response) => {
+            console.log(response);
+            alert("Registro exitoso");
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Error al registrar");
+          });
+      });
+    });
+  </script>
 </html>
