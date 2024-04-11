@@ -8,7 +8,7 @@ class UserConnection():
         try:
             self.conn = psycopg2.connect(
                 host="localhost",
-                database="Registro_DB", #Nombre de la BDD en tu pc
+                database="Registro_Civil_DB", #Nombre de la BDD en tu pc
                 user="antonio", #Nombre del user que tengas en tu pc
                 password="123456", #Contrasena que tengas en tu pc
                 port = "5432"
@@ -86,16 +86,19 @@ class UserConnection():
             print("Error al actualizar datos: ", err)
 
     #Query para actualizar datos por id
-    def update_field_cedula(self, table_name: str, table_cedula: int, field_name: str, new_value):
+    def update_field_cedula(self, table_name: str, table_cedula: int, new_values: dict):
         try:
             with self.conn.cursor() as cur:
-                query = f"UPDATE public.{table_name} SET {field_name} = %s WHERE cedula = %s"
-                cur.execute(query, (new_value, table_cedula))
+                set_clause = ', '.join([f'"{column}" = %s' for column in new_values.keys()])
+                values = list(new_values.values())
+                query = f"UPDATE public.{table_name} SET {set_clause} WHERE cedula = {table_cedula}"
+                cur.execute(query, tuple(values))
                 self.conn.commit()
                 print(f"Registro con cedula {table_cedula} actualizado correctamente de la tabla {table_name}.")
         except psycopg2.Error as err:
             print("Error al actualizar datos: ", err)
-            
+
+
     #Cierra la conexion a la BDD al finalizar la ejecucion
     def __del__(self):
         self.conn.close()    

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from schema.schemasTables import SchemaNacimientos, SchemaCiudadanos, SchemaTestigos, SchemaParroquias, SchemaMatrimonios, SchemaDivorcios, SchemaDefunciones
+from schema.schemasTables import SchemaNacimientos, SchemaCiudadanos, SchemaTestigos, SchemaMatrimonios, SchemaDivorcios, SchemaDefunciones
 from config.db import UserConnection
 
 user = APIRouter() #Crea un enrutador llamado "user"
@@ -9,10 +9,8 @@ conn = UserConnection() #Instancia de la conexion a la BDD
 #Ruta para insertar nacimientos
 @user.post("/Nacimientos/insert")
 def insertNacimientos(nacimientos: SchemaNacimientos):
-    data = {}
     #Convierte los datos en un diccionario para mejor organizacion
-    for field, value in nacimientos:
-        data[field] = value
+    data = dict(nacimientos)
     conn.insert_into_table('"Nacimientos"', data)
     print(data)
 
@@ -28,17 +26,14 @@ def deleteNacimientos(table_cedula: int):
 
 #Ruta para actulizar algun dato de nacimiento
 @user.put("/Nacimientos/update/{cedula}")
-def updateNacimientos(table_cedula: int, field_name: str, new_value):
-    conn.update_field_cedula('"Nacimientos"', table_cedula, field_name, new_value)
+def updateNacimientos(cedula: int, nacimientos: SchemaNacimientos):
+    conn.update_field_cedula('"Nacimientos"', cedula, dict(nacimientos))
 
 #CIUDADANOS
 #Ruta para insertar ciudadanos
 @user.post("/Ciudadanos/insert")
 def insertCiudadanos(ciudadanos: SchemaCiudadanos):
-    data = {}
-    #Convierte los datos en un diccionario para mejor organizacion
-    for field, value in ciudadanos:
-        data[field] = value
+    data = dict(ciudadanos)
     conn.insert_into_table('"Ciudadanos"', data)
     print(data)
 
@@ -54,17 +49,14 @@ def deleteCiudadanos(table_cedula: int):
 
 #Ruta para actulizar algun dato de ciudadanos
 @user.put("/Ciudadanos/update/{cedula}")
-def updateCiudadanos(table_cedula: int, field_name: str, new_value):
-    conn.update_field_cedula('"Ciudadanos"', table_cedula, field_name, new_value)
+def updateCiudadanos(cedula: int, ciudadanos: SchemaCiudadanos):
+    conn.update_field_cedula('"Ciudadanos"', cedula, dict(ciudadanos))
 
 #TESTIGOS
 #Ruta para insertar testigos
 @user.post("/Testigos/insert")
 def insertTestigos(testigos: SchemaTestigos):
-    data = {}
-    #Convierte los datos en un diccionario para mejor organizacion
-    for field, value in testigos:
-        data[field] = value
+    data = dict(testigos)
     conn.insert_into_table('"Testigos"', data)
     print(data)
 
@@ -80,45 +72,14 @@ def deleteTestigos(table_cedula: int):
 
 #Ruta para actulizar algun dato de testigos
 @user.put("/Testigos/update/{cedula}")
-def updateTestigos(table_cedula: int, field_name: str, new_value):
-    conn.update_field_cedula('"Testigos"', table_cedula, field_name, new_value)
-
-#PARROQUIAS
-#Ruta para insertar parroquias
-@user.post("/Parroquias/insert")
-def insertParroquias(parroquias: SchemaParroquias):
-    data = {}
-    #Convierte los datos en un diccionario para mejor organizacion
-    for field, value in parroquias:
-        data[field] = value
-    data.pop("id")
-    conn.insert_into_table('"Parroquias"', data)
-    print(data)
-
-#Ruta para retornar los valores que hay en la tabla Parroquias
-@user.get("/Parroquias/read")
-def readParroquias():
-    return conn.read('"Parroquias"') 
-
-#Ruta para eliminar alguna parroquia
-@user.delete("/Parroquias/delete/{id}")
-def deleteParroquias(table_id: int):
-    conn.delete_id('"Parroquias"',table_id)
-
-#Ruta para actulizar algun dato de las parroquias
-@user.put("/Parroquias/update/{id}")
-def updateParroquias(table_id: int, field_name: str, new_value):
-    conn.update_field_id('"Parroquias"', table_id, field_name, new_value)
+def updateTestigos(cedula: int, testigos: SchemaTestigos):
+    conn.update_field_cedula('"Testigos"', cedula, dict(testigos))
 
 #MATRIMONIOS
 #Ruta para insertar matrimonios
 @user.post("/Matrimonios/insert")
 def insertMatrimonios(matrimonios: SchemaMatrimonios):
-    data = {}
-    #Convierte los datos en un diccionario para mejor organizacion
-    for field, value in matrimonios:
-        data[field] = value
-    data.pop("id")
+    data = dict(matrimonios)
     conn.insert_into_table('"Matrimonios"', data)
     print(data)
 
@@ -141,11 +102,7 @@ def updateMatrimonios(table_id: int, field_name: str, new_value):
 #Ruta para insertar divorcios
 @user.post("/Divorcios/insert")
 def insertDivorcios(divorcios: SchemaDivorcios):
-    data = {}
-    #Convierte los datos en un diccionario para mejor organizacion
-    for field, value in divorcios:
-        data[field] = value
-    data.pop("id")
+    data = dict(divorcios)
     conn.insert_into_table('"Divorcios"', data)
     print(data)
 
@@ -168,10 +125,7 @@ def updateDivorcios(table_id: int, field_name: str, new_value):
 #Ruta para insertar defuneciones
 @user.post("/Defunciones/insert")
 def insertDefunciones(defunciones: SchemaDefunciones):
-    data = {}
-    #Convierte los datos en un diccionario para mejor organizacion
-    for field, value in defunciones:
-        data[field] = value
+    data = dict(defunciones)
     conn.insert_into_table('"Defunciones"', data)
     print(data)
 
@@ -185,7 +139,6 @@ def readDefunciones():
 def deleteDefunciones(table_cedula: int):
     conn.delete_cedula('"Defunciones"',table_cedula)
 
-#Ruta para actulizar algun dato de defunciones
 @user.put("/Defunciones/update/{cedula}")
-def updateDefunciones(table_cedula: int, field_name: str, new_value):
-    conn.update_field_cedula('"Defunciones"', table_cedula, field_name, new_value)
+def updateDefunciones(cedula: int, defunciones: SchemaDefunciones):
+    conn.update_field_cedula('"Defunciones"', cedula, dict(defunciones))

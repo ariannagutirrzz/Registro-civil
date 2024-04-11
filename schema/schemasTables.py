@@ -4,30 +4,26 @@ from typing import Optional
 
 #Modelo de datos que va a recibir la tabla nacimientos
 class SchemaNacimientos(BaseModel):
-    cedula: int
+    id: int
     nombre: str
     sexo: str
     fecha_nacimiento: date
+    hora_nacimiento: time
     lugar_nacimiento: str
     padre1_cedula: Optional[int] = None
     padre2_cedula: Optional[int] = None
     testigo1_cedula: Optional[int] = None
     testigo2_cedula: Optional[int] = None
-    parroquia_id: Optional[int] = None
+    parroquia: Optional[str] = None
 
 class SchemaCiudadanos(BaseModel):
-    cedula: int
+    cedula: Optional[int] = None
     nacionalidad: str
     estado_civil: str
+    nacimientos_id: Optional[int] = None
 
 class SchemaTestigos(BaseModel):
     cedula: int
-
-class SchemaParroquias(BaseModel):
-    id: Optional[int] = None
-    nombre: str
-    estado: str
-    municipio: str
 
 class SchemaMatrimonios(BaseModel):
     id: Optional[int] = None
