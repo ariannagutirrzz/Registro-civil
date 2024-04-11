@@ -8,7 +8,7 @@ class UserConnection():
         try:
             self.conn = psycopg2.connect(
                 host="localhost",
-                database="carnalito_db", #Nombre de la BDD en tu pc
+                database="Registro_DB", #Nombre de la BDD en tu pc
                 user="antonio", #Nombre del user que tengas en tu pc
                 password="123456", #Contrasena que tengas en tu pc
                 port = "5432"
