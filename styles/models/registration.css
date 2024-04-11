@@ -27,7 +27,8 @@ input[type="text"],
 input[type="int"],
 input[type="date"],
 input[type="submit"],
-input[type="time"] {
+input[type="time"],
+input[type="number"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
