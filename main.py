@@ -8,7 +8,7 @@ app = FastAPI() #Inicio de la app
 app.include_router(user) #Incluye el enrutador "user" en la aplicación principal
 
 origins = [
-    "*",
+    "*"
 ]
 
 app.add_middleware(
