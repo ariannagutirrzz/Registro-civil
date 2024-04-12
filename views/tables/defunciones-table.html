@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Defunciones</title>
     <link rel="stylesheet" href="../../styles/tables/tables.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div>
@@ -15,41 +17,21 @@
         <table id="table-defunciones">
             <thead>
                 <tr>
-                    <th>Nombre</th>
                     <th>Cedula</th>
-                    <th>Sexo</th>
-                    <th>Fecha de nacimiento</th>
+                    <th>Fecha defuncion</th>
+                    <th>Hora defuncion</th>
+                    <th>Lugar de defuncion</th>
                     <th>Lugar de nacimiento</th>
-                    <th>Cedula del padre</th>
-                    <th>Cedula de la madre</th>
-                    <th>Cedula del testigo 1</th>
-                    <th>Cedula del testigo 2</th>
+                    <th>Destino del cadaver</th>
+                    <th>Causa de defuncion</th>
+                    <th>Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Carlos</td>
-                    <td>123456789</td>
-                    <td>M</td>
-                    <td>2021-10-10</td>
-                    <td>San Jose</td>
-                    <td>123456789</td>
-                    <td>123456789</td>
-                    <td>123456789</td>
-                    <td>123456789</td>
-                </tr>
-                <tr>
-                    <td>Carlos</td>
-                    <td>123456789</td>
-                    <td>M</td>
-                    <td>2021-10-10</td>
-                    <td>San Jose</td>
-                    <td>123456789</td>
-                    <td>123456789</td>
-                    <td>123456789</td>
-                    <td>123456789</td>
-                </tr>
+            <tbody id="body">
+ 
             </tbody>
     </div>
+    <script src="../../server/table-defunciones.js"></script>
 </body>
 </html>
