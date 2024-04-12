@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
                         <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
                         <td><button onClick="modalDelete(${ciudadano.cedula})" class="back-button">Eliminar</button></td>
-                        <td></td><button onClick="modalUpdate(${ciudadano.cedula})" class="back-button">Actualizar</button></td>
+                        <td><button onClick="modalUpdate(${ciudadano.cedula})" class="back-button">Modificar</button></td>
                     </tr>
                 `;
             }).join("");
