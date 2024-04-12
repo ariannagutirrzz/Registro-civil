@@ -28,16 +28,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-.back-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #f1f1f1;
-    color: #333;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-right: 10px;
-}
-
 .back-button:hover {
     background-color: #ddd;
 }
@@ -55,3 +45,17 @@ a {
 a:hover {
     background-color: #ddd;
 }
+
+.back-button {
+    color: black;
+    background-color: #45a049;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+
