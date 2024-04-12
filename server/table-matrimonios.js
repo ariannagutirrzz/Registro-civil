@@ -13,13 +13,13 @@ const modalDelete = (id) => {
             .then((response) => {
               console.log(response);
               alert("Matrimonio eliminado correctamente");
+              location.reload();
             })
             .catch((error) => {
               console.error(error);
               alert("Error al eliminar un matrimonio");
             });
           Swal.fire("Deleted!", "", "success");
-          location.reload();
 
         } else if (result.isDenied) {
           Swal.fire("Changes are not saved", "", "info");
