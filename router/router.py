@@ -7,6 +7,19 @@ from config.db import UserConnection
 user = APIRouter() #Crea un enrutador llamado "user"
 conn = UserConnection() #Instancia de la conexion a la BDD
 
+# def create_PDF(ciudadanos: SchemaCiudadanos):
+#     pdf = FPDF()
+#     pdf.add_page()
+#     pdf.set_font('Arial', 'B', 16)
+#     pdf.cell(40, 10, f'Cédula: {ciudadanos["cedula"]}')
+#     pdf.ln(10)  # Nueva línea
+#     pdf.cell(40, 10, f'Nacionalidad: {ciudadanos["nacionalidad"]}')
+#     pdf.ln(10)  # Nueva línea
+#     pdf.cell(40, 10, f'Estado Civil: {ciudadanos["estado_civil"]}')
+#     pdf.ln(10)  # Nueva línea
+#     pdf.cell(40, 10, f'ID de Nacimiento: {ciudadanos["nacimientos_id"]}')
+#     pdf.output(name='C:\\Users\\anton\\OneDrive\\Escritorio\\pdf\\ciudadanos.pdf', dest='F')
+
 #NACIMIENTOS
 #Ruta para insertar nacimientos
 @user.post("/Nacimientos/insert")
@@ -45,6 +58,13 @@ def insertCiudadanos(ciudadanos: SchemaCiudadanos):
 def readCiudadanos():
     return conn.read('"Ciudadanos"')
 
+# @user.get("/Ciudadanos/read/{cedula}")
+# def readCiudadanosPdf(cedula: int):
+#     data = conn.read_by_cedula('"Ciudadanos"', cedula)
+#     data = data[0]
+#     create_PDF(data)
+#     return data
+
 #Ruta para eliminar algun ciudadano
 @user.delete("/Ciudadanos/delete/{cedula}")
 def deleteCiudadanos(cedula: int):
@@ -55,23 +75,6 @@ def deleteCiudadanos(cedula: int):
 def updateCiudadanos(cedula: int, ciudadanos: SchemaCiudadanosUpdate):
     data = dict(ciudadanos)
     conn.update_field_cedula('"Ciudadanos"', cedula, data)
-
-# def create_PDF(ciudadanos: SchemaCiudadanos):
-#     pdf = FPDF()
-#     pdf.add_page()
-#     pdf.set_font('Arial', 'B', 16)
-#     pdf.cell(40, 10, f'Cédula: {ciudadanos.cedula}')
-#     pdf.ln(10)  # Nueva línea
-#     pdf.cell(40, 10, f'Nacionalidad: {ciudadanos.nacionalidad}')
-#     pdf.ln(10)  # Nueva línea
-#     pdf.cell(40, 10, f'Estado Civil: {ciudadanos.estado_civil}')
-#     pdf.ln(10)  # Nueva línea
-#     pdf.cell(40, 10, f'ID de Nacimiento: {ciudadanos.nacimientos_id}')
-#     return pdf.output(dest='S').encode('latin1')
-
-# @user.get("/Ciudadanos/read/{cedula}")
-# def readCiudadanosPdf(cedula):
-#     return conn.read_by_cedula('"Ciudadanos"', cedula)
 
 #MATRIMONIOS
 #Ruta para insertar matrimonios
