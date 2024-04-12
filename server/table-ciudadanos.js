@@ -19,24 +19,6 @@ const modal = (cedula) => {
       });
 }
 
-// const json = [{
-//     nombre: "Carlos",
-//     cedula: "123456789",
-//     sexo: "M",
-//     fecha_nacimiento: "2021-10-10",
-// },
-// {
-//     nombre: "Ari",
-//     cedula: "30605255",
-//     sexo: "F",
-//     fecha_nacimiento: "2004-06-08",
-// },
-// {
-//     nombre: "Luis",
-//     cedula: "123456789",
-// }
-// ];
-
 document.addEventListener("DOMContentLoaded", (e) => {
     //   const miForm = document.getElementById("form-ciudadanos");
     axios.get("http://localhost:8000/Ciudadanos/read")

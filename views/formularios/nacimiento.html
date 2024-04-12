@@ -15,19 +15,9 @@
       method="post"
       id="form-nacimientos"
     >
-      <label for="id">ID:</label>
-      <input type="number" name="id" id="id" />
 
       <label for="nombre">Nombre:</label>
       <input type="text" name="nombre" id="nombre" />
-
-      <label for="sexo">Sexo:</label>
-      <select name="sexo" id="sexo">
-          <option value="masculino">Masculino</option>
-          <option value="femenino">Femenino</option>
-          <option value="otro">Otro</option>
-      </select>
-
 
       <label for="fecha_nacimiento">Fecha de nacimiento:</label>
       <input
@@ -60,7 +50,13 @@
 
       <label for="parroquia">Parroquia:</label>
       <input type="text" name="parroquia" id="parroquia" />
-
+      
+      <label for="sexo">Sexo:</label>
+      <select name="sexo" id="sexo">
+          <option value="masculino">Masculino</option>
+          <option value="femenino">Femenino</option>
+          <option value="otro">Otro</option>
+      </select>
       <input type="submit" value="Registrar" />
       <a href="../registro.html" class="back-button">Ir atrás</a>
     </form>

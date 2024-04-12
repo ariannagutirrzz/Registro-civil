@@ -28,7 +28,8 @@ input[type="int"],
 input[type="date"],
 input[type="submit"],
 input[type="time"],
-input[type="number"] {
+input[type="number"],
+select {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -61,4 +62,31 @@ input[type="submit"]:hover {
   cursor: pointer;
   display: inline-block;
   margin: 2% auto 0 45.4%;
+}
+/* Estilos para el elemento select */
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 200px; /* Ajusta el ancho máximo según tu diseño */
+  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+/* Estilos para las opciones del select */
+option {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Estilos para el hover de las opciones */
+option:hover {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para el foco del select */
+select:focus {
+  outline: none;
+  border-color: #007bff; /* Cambia el color del borde al enfocar */
 }
