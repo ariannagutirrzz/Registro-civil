@@ -17,10 +17,9 @@
     <table id="table-ciudadanos">
         <thead>
             <tr>
-                <th>Nombre</th>
                 <th>Cedula</th>
-                <th>Sexo</th>
-                <th>Fecha de nacimiento</th>
+                <th>Nacionalidad</th>
+                <th>Estado civil</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -43,19 +42,6 @@
    </div>
    <script src="../../code/table-ciudadanos.js"></script>
 <script>
-
-     document.addEventListener("DOMContentLoaded", (e) => {
-    //   const miForm = document.getElementById("form-ciudadanos");
-    axios.get("http://localhost:8000/Ciudadanos/read")
-          .then((response) => {
-            console.log(response);
-            alert("Datos mostrados correctamente");
-          })
-          .catch((error) => {
-            console.error(error);
-            alert("Error al mostrar los datos");
-          });
-      });
 
 </script>
 </body>
