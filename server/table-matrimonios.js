@@ -12,11 +12,11 @@ const modalDelete = (id) => {
             axios.delete(`http://localhost:8000/Matrimonios/delete/${id}`)
             .then((response) => {
               console.log(response);
-              alert("Ciudadano eliminado correctamente");
+              alert("Matrimonio eliminado correctamente");
             })
             .catch((error) => {
               console.error(error);
-              alert("Error al eliminar un ciudadano");
+              alert("Error al eliminar un matrimonio");
             });
           Swal.fire("Deleted!", "", "success");
           location.reload();
@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("body").innerHTML = response.data.map((matrimonio) => {
                 return `
                     <tr>
+                        <td>${matrimonio.id}</td>
                         <td>${matrimonio.contrayente1_cedula || "Dato sin registrar"}</td>
                         <td>${matrimonio.contrayente2_cedula || "Dato sin registrar"}</td>
                         <td>${matrimonio.contrayente1_padre1_cedula || "Dato sin registrar"} </td>
