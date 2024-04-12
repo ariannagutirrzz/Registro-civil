@@ -9,7 +9,15 @@ const modal = (cedula) => {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            axios.delete(`http://localhost:3000/Ciudadanos/delete/${cedula}`)
+            axios.delete(`http://localhost:8000/Ciudadanos/delete/${cedula}`)
+            .then((response) => {
+              console.log(response);
+              alert("Registro exitoso");
+            })
+            .catch((error) => {
+              console.error(error);
+              alert("Error al registrar");
+            });
           Swal.fire("Deleted!", "", "success");
           location.reload();
 
@@ -19,8 +27,7 @@ const modal = (cedula) => {
       });
 }
 
-document.addEventListener("DOMContentLoaded", (e) => {
-    //   const miForm = document.getElementById("form-ciudadanos");
+document.addEventListener("DOMContentLoaded", () => {
     axios.get("http://localhost:8000/Ciudadanos/read")
           .then((response) => {
             document.getElementById("body").innerHTML = response.data.map((ciudadano) => {
