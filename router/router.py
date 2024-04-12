@@ -23,14 +23,14 @@ def readNacimientos():
     return conn.read('"Nacimientos"')
 
 #Ruta para eliminar algun nacimiento
-@user.delete("/Nacimientos/delete/{cedula}")
-def deleteNacimientos(table_cedula: int):
-    conn.delete_cedula('"Nacimientos"',table_cedula)
+@user.delete("/Nacimientos/delete/{id}")
+def deleteNacimientos(id: int):
+    conn.delete_id('"Nacimientos"',id)
 
 #Ruta para actulizar algun dato de nacimiento
 @user.put("/Nacimientos/update/{cedula}")
-def updateNacimientos(cedula: int, nacimientos: SchemaNacimientosUpdate):
-    conn.update_field_cedula('"Nacimientos"', cedula, dict(nacimientos))
+def updateNacimientos(id: int, nacimientos: SchemaNacimientosUpdate):
+    conn.update_field_id('"Nacimientos"', id, dict(nacimientos))
 
 #CIUDADANOS
 #Ruta para insertar ciudadanos
