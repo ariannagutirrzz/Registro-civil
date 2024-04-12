@@ -8,7 +8,7 @@ class UserConnection():
         try:
             self.conn = psycopg2.connect(
                 host="localhost",
-                database="Registro_Civil_DB", #Nombre de la BDD en tu pc
+                database="Registro_DB", #Nombre de la BDD en tu pc
                 user="antonio", #Nombre del user que tengas en tu pc
                 password="123456", #Contrasena que tengas en tu pc
             )
@@ -43,6 +43,20 @@ class UserConnection():
         try:
             with self.conn.cursor() as cur:
                 query = f"SELECT * FROM public.{table_name}"
+                cur.execute(query)
+                data = self.dictfetchall(cur)
+                if data is not None:
+                    return data
+                else:
+                    print("Data is None")
+        except psycopg2.Error as err:
+            print("Error al leer datos: ", err)
+            self.conn.rollback()
+    
+    def read_by_cedula(self, table_name: str, cedula: int):
+        try:
+            with self.conn.cursor() as cur:
+                query = f"SELECT * FROM public.{table_name} WHERE cedula = {cedula}"
                 cur.execute(query)
                 data = self.dictfetchall(cur)
                 if data is not None:

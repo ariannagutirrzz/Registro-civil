@@ -4,8 +4,8 @@ from typing import Optional
 
 #Modelo de datos que va a recibir la tabla nacimientos
 class SchemaNacimientos(BaseModel):
-    id: int
-    nombre: str
+    id: Optional[int] = None
+    nombre: Optional[str] = None
     sexo: str
     fecha_nacimiento: date
     hora_nacimiento: time
