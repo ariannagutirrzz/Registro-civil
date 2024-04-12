@@ -24,7 +24,6 @@ const modalDelete = (id) => {
         }
       });
 }
-
 document.addEventListener("DOMContentLoaded", () => {
     axios.get("http://localhost:8000/Matrimonios/read")
           .then((response) => {
