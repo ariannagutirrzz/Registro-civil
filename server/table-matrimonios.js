@@ -19,14 +19,11 @@ const modalDelete = (id) => {
               console.error(error);
               alert("Error al eliminar un matrimonio");
             });
-          Swal.fire("Deleted!", "", "success");
-
         } else if (result.isDenied) {
           Swal.fire("Changes are not saved", "", "info");
         }
       });
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
     axios.get("http://localhost:8000/Matrimonios/read")
