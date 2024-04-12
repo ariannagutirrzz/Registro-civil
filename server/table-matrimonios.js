@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${matrimonio.contrayente2_cedula || "Dato sin registrar"}</td>
                         <td>${matrimonio.contrayente1_padre1_cedula || "Dato sin registrar"} </td>
                         <td>${matrimonio.contrayente1_padre2_cedula || "Dato sin registrar"}</td>
-                        <td>${matrimonio.contrayente1_padre2_cedula || "Dato sin registrar"}</td>
                         <td>${matrimonio.contrayente2_padre1_cedula || "Dato sin registrar"}</td>
                         <td>${matrimonio.contrayente2_padre2_cedula || "Dato sin registrar"}</td>
                         <td>${matrimonio.fecha_ActaMatrimonio || "Dato sin registrar"}</td>
