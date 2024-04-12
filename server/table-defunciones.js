@@ -1,5 +1,5 @@
 
-const modalDelete = (id) => {
+const modalDelete = (cedula) => {
     Swal.fire({
         title: "Are you sure you want to delete this?",
         showDenyButton: true,
@@ -9,14 +9,14 @@ const modalDelete = (id) => {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            axios.delete(`http://localhost:8000/Defunciones/delete/${id}`)
+            axios.delete(`http://localhost:8000/Defunciones/delete/${cedula}`)
             .then((response) => {
               console.log(response);
-              alert("Ciudadano eliminado correctamente");
+              alert("Defuncion eliminada correctamente");
             })
             .catch((error) => {
               console.error(error);
-              alert("Error al eliminar un ciudadano");
+              alert("Error al eliminar una defuncion");
             });
           Swal.fire("Deleted!", "", "success");
           location.reload();
@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${defuncion.lugar_defuncion || "Dato sin registrar"}</td>
                         <td>${defuncion.destino_cadaver || "Dato sin registrar"} </td>
                         <td>${defuncion.causa_defuncion || "Dato sin registrar"}</td>
-                        <td><button onClick="modalDelete(${defuncion.id})" class="back-button">Eliminar</button></td>
-                        <td><button onClick="modalUpdate(${defuncion.id})" class="back-button">Modificar</button></td>
+                        <td><button onClick="modalDelete(${defuncion.cedula})" class="back-button">Eliminar</button></td>
+                        <td><button onClick="modalUpdate(${defuncion.cedula})" class="back-button">Modificar</button></td>
                     </tr>
                 `;
             }).join("");
