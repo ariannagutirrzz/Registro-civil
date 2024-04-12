@@ -1,6 +1,7 @@
 from fastapi import APIRouter
-from fpdf import FPDF
-from schema.schemasTables import SchemaNacimientos, SchemaCiudadanos, SchemaTestigos, SchemaMatrimonios, SchemaDivorcios, SchemaDefunciones
+# from fpdf import FPDF
+from schema.schemasTables import SchemaNacimientos, SchemaCiudadanos, SchemaMatrimonios, SchemaDivorcios, SchemaDefunciones
+from schema.schemasUpdates import SchemaCiudadanosUpdate, SchemaMatrimoniosUpdate, SchemaNacimientosUpdate, SchemaDefuncionesUpdate, SchemaDivorciosUpdate
 from config.db import UserConnection
 
 user = APIRouter() #Crea un enrutador llamado "user"
@@ -28,7 +29,7 @@ def deleteNacimientos(table_cedula: int):
 
 #Ruta para actulizar algun dato de nacimiento
 @user.put("/Nacimientos/update/{cedula}")
-def updateNacimientos(cedula: int, nacimientos: SchemaNacimientos):
+def updateNacimientos(cedula: int, nacimientos: SchemaNacimientosUpdate):
     conn.update_field_cedula('"Nacimientos"', cedula, dict(nacimientos))
 
 #CIUDADANOS
@@ -51,48 +52,26 @@ def deleteCiudadanos(cedula: int):
 
 #Ruta para actulizar algun dato de ciudadanos
 @user.put("/Ciudadanos/update/{cedula}")
-def updateCiudadanos(cedula: int, ciudadanos: SchemaCiudadanos):
-    conn.update_field_cedula('"Ciudadanos"', cedula, dict(ciudadanos))
+def updateCiudadanos(cedula: int, ciudadanos: SchemaCiudadanosUpdate):
+    data = dict(ciudadanos)
+    conn.update_field_cedula('"Ciudadanos"', cedula, data)
 
-def create_PDF(ciudadanos: SchemaCiudadanos):
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font('Arial', 'B', 16)
-    pdf.cell(40, 10, f'Cédula: {ciudadanos.cedula}')
-    pdf.ln(10)  # Nueva línea
-    pdf.cell(40, 10, f'Nacionalidad: {ciudadanos.nacionalidad}')
-    pdf.ln(10)  # Nueva línea
-    pdf.cell(40, 10, f'Estado Civil: {ciudadanos.estado_civil}')
-    pdf.ln(10)  # Nueva línea
-    pdf.cell(40, 10, f'ID de Nacimiento: {ciudadanos.nacimientos_id}')
-    return pdf.output(dest='S').encode('latin1')
+# def create_PDF(ciudadanos: SchemaCiudadanos):
+#     pdf = FPDF()
+#     pdf.add_page()
+#     pdf.set_font('Arial', 'B', 16)
+#     pdf.cell(40, 10, f'Cédula: {ciudadanos.cedula}')
+#     pdf.ln(10)  # Nueva línea
+#     pdf.cell(40, 10, f'Nacionalidad: {ciudadanos.nacionalidad}')
+#     pdf.ln(10)  # Nueva línea
+#     pdf.cell(40, 10, f'Estado Civil: {ciudadanos.estado_civil}')
+#     pdf.ln(10)  # Nueva línea
+#     pdf.cell(40, 10, f'ID de Nacimiento: {ciudadanos.nacimientos_id}')
+#     return pdf.output(dest='S').encode('latin1')
 
-@user.get("/Ciudadanos/read/{cedula}")
-def readCiudadanosPdf(cedula):
-    return conn.read_by_cedula('"Ciudadanos"', cedula)
-
-#TESTIGOS
-#Ruta para insertar testigos
-@user.post("/Testigos/insert")
-def insertTestigos(testigos: SchemaTestigos):
-    data = dict(testigos)
-    conn.insert_into_table('"Testigos"', data)
-    print(data)
-
-#Ruta para retornar los valores que hay en la tabla Testigos
-@user.get("/Testigos/read")
-def readTestigos():
-    return conn.read('"Testigos"')   
-
-#Ruta para eliminar algun testigo
-@user.delete("/Testigos/delete/{cedula}")
-def deleteTestigos(table_cedula: int):
-    conn.delete_cedula('"Testigos"',table_cedula)
-
-#Ruta para actulizar algun dato de testigos
-@user.put("/Testigos/update/{cedula}")
-def updateTestigos(cedula: int, testigos: SchemaTestigos):
-    conn.update_field_id('"Testigos"', cedula, dict(testigos))
+# @user.get("/Ciudadanos/read/{cedula}")
+# def readCiudadanosPdf(cedula):
+#     return conn.read_by_cedula('"Ciudadanos"', cedula)
 
 #MATRIMONIOS
 #Ruta para insertar matrimonios
@@ -115,7 +94,7 @@ def deleteMatrimonios(id: int):
 
 #Ruta para actulizar algun dato de matrimonio
 @user.put("/Matrimonios/update/{id}")
-def updateMatrimonios(id: int, matrimnoios: SchemaMatrimonios):
+def updateMatrimonios(id: int, matrimnoios: SchemaMatrimoniosUpdate):
     conn.update_field_id('"Matrimonios"', id, dict(matrimnoios))
 
 #DIVORCIOS
@@ -139,7 +118,7 @@ def deleteDivorcios(id: int):
 
 #Ruta para actulizar algun dato de divorcio
 @user.put("/Divorcios/update/{id}")
-def updateDivorcios(id: int, divorcios: SchemaDivorcios):
+def updateDivorcios(id: int, divorcios: SchemaDivorciosUpdate):
     conn.update_field_id('"Divorcios"', id, dict(divorcios))
 
 #DEFUNCIONES
@@ -161,6 +140,6 @@ def deleteDefunciones(cedula: int):
     conn.delete_cedula('"Defunciones"',cedula)
 
 @user.put("/Defunciones/update/{cedula}")
-def updateDefunciones(cedula: int, defunciones: SchemaDefunciones):
+def updateDefunciones(cedula: int, defunciones: SchemaDefuncionesUpdate):
     conn.update_field_cedula('"Defunciones"', cedula, dict(defunciones))
     
