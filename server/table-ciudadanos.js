@@ -62,9 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
 //           document.getElementById("estado_civil").value = response.data.estado_civil;
 
           // Rellenar otros campos del formulario
-      })
-      .catch((error) => {
-          console.error(error);
-          alert("Error al cargar los datos del ciudadano");
-      });
-});
+//       })
+//       .catch((error) => {
+//           console.error(error);
+//           alert("Error al cargar los datos del ciudadano");
+//       });
+// });
