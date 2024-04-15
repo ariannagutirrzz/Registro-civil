@@ -85,3 +85,44 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Error al mostrar los datos");
           });
       });
+
+// Editar formularios
+
+document.addEventListener("DOMContentLoaded", () => {
+  axios.get("http://localhost:8000/Ciudadanos/read")
+      .then((response) => {
+          // Rellenar los campos del formulario con los datos obtenidos
+          document.getElementById("estado_civil").value = response.data.estado_civil;
+          // Rellenar otros campos del formulario
+      })
+      .catch((error) => {
+          console.error(error);
+          alert("Error al cargar los datos del ciudadano");
+      });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  axios.get("http://localhost:8000/Ciudadanos/read")
+        .then((response) => {
+          document.getElementById("body").innerHTML = response.data.map((ciudadano) => {
+              return `
+                  <tr>
+                      <td>${ciudadano.cedula || "Dato sin registrar"}</td>
+                      <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
+                      <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
+                      <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
+                      <td><button onClick="modalDelete(${ciudadano.cedula})" class="back-button">Eliminar</button></td>
+                      <td><button onClick="modalUpdate(${ciudadano.cedula})" class="back-button">Modificar</button></td>
+                  </tr>
+              `;
+          }).join("");
+          console.log(response);
+          alert("Datos mostrados correctamente");
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Error al mostrar los datos");
+        });
+    });

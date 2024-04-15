@@ -9,28 +9,20 @@
 <body>
     <div>
         <h1>Datos a modificar: </h1>
-    <form action="../../controllers/modificaciones/modificar-ciudadano.php" method="POST" class="registration-form">
+    <form action="" method="PUT" class="registration-form">
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" id="nombre" required>
         <label for="cedula">Cedula: </label>
         <input type="text" name="cedula" id="cedula" required>
         <label for="sexo">Sexo: </label>
         <input type="text" name="sexo" id="sexo" required>
-        <label for="fecha_nacimiento">Fecha de nacimiento: </label>
-        <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
-        <label for="lugar_nacimiento">Lugar de nacimiento: </label>
-        <input type="text" name="lugar_nacimiento" id="lugar_nacimiento" required>
-        <label for="cedula_padre">Cedula del padre: </label>
-        <input type="text" name="cedula_padre" id="cedula_padre">
-        <label for="cedula_madre">Cedula de la madre: </label>
-        <input type="text" name="cedula_madre" id="cedula_madre">
-        <label for="cedula_testigo1">Cedula del testigo 1: </label>
-        <input type="text" name="cedula_testigo1" id="cedula_testigo1">
-        <label for="cedula_testigo2">Cedula del testigo 2: </label>
-        <input type="text" name="cedula_testigo2" id="cedula_testigo2">
+        <label for="estado_civil">Estado civil: </label>
+        <input type="text" name="estado_civil" id="estado_civil" required>
+
         <input type="submit" value="Modificar">
     </form>
-    <a href="../listados/ciudadadanos-table.html" class="back-button">Ir atrás</a>
+    <a href="../tables/ciudadadanos-table.html" class="back-button">Ir atrás</a>
     </div>
+    <script src="../../server/table-ciudadanos.js"></script>
 </body>
 </html>
