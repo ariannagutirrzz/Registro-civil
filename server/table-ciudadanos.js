@@ -92,7 +92,10 @@ document.addEventListener("DOMContentLoaded", () => {
   axios.get("http://localhost:8000/Ciudadanos/read")
       .then((response) => {
           // Rellenar los campos del formulario con los datos obtenidos
+          document.getElementById("cedula").value = response.data.cedula;
+          document.getElementById("nacionalidad").value = response.data.nacionalidad;
           document.getElementById("estado_civil").value = response.data.estado_civil;
+
           // Rellenar otros campos del formulario
       })
       .catch((error) => {
@@ -114,7 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
                       <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
                       <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
                       <td><button onClick="modalDelete(${ciudadano.cedula})" class="back-button">Eliminar</button></td>
-                      <td><button onClick="modalUpdate(${ciudadano.cedula})" class="back-button">Modificar</button></td>
+                      <td>
+                      <a href="ruta/para/modificar/${ciudadano.cedula}" class="back-button">Modificar</a>
+                      </td>
                   </tr>
               `;
           }).join("");
