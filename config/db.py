@@ -133,9 +133,23 @@ class UserConnection():
             print("Error al actualizar datos: ", err)
             self.conn.rollback()
 
-    #Query para estadisticas basicas
-    def stadistics(self):
-        pass
+    #Query para estadistica del total en una tabla
+    def stadistics(self, table_name: str, condition = None):
+        try:
+            with self.conn.cursor() as cur:
+                if condition:
+                    query = f"SELECT COUNT(*) FROM public.{table_name} WHERE {condition};"
+                else:
+                    query = f"SELECT COUNT(*) FROM public.{table_name};"
+                cur.execute(query)
+                data = cur.fetchall()
+                if data is not None:
+                    return data
+                else:
+                    print("Data is None")
+        except psycopg2.Error as err:
+            print("Error al mostrar estadisticas: ", err)
+            self.conn.rollback()
 
     #Cierra la conexion a la BDD al finalizar la ejecucion
     def __del__(self):

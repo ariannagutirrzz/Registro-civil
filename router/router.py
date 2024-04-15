@@ -75,6 +75,11 @@ def updateCiudadanos(cedula: int, ciudadanos: SchemaCiudadanosUpdate):
     data = dict(ciudadanos)
     conn.update_field_cedula('"Ciudadanos"', cedula, data)
 
+@user.get("/Ciudadanos/estadisticas")
+def stadisticsCiudadanos():
+    data = conn.stadistics('"Ciudadanos"')
+    return data
+
 #MATRIMONIOS
 #Ruta para insertar matrimonios
 @user.post("/Matrimonios/insert")
