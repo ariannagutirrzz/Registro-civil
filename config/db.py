@@ -67,6 +67,20 @@ class UserConnection():
             print("Error al leer datos: ", err)
             self.conn.rollback()
 
+    def read_by_id(self, table_name: str,  table_id: int):
+        try:
+            with self.conn.cursor() as cur:
+                query = f"SELECT * FROM public.{table_name} WHERE id = {table_id}"
+                cur.execute(query)
+                data = self.dictfetchall(cur)
+                if data is not None:
+                    return data
+                else:
+                    print("Data is None")
+        except psycopg2.Error as err:
+            print("Error al leer datos: ", err)
+            self.conn.rollback()  
+
     #Query para eliminar datos por id
     def delete_id(self, table_name: str, table_id: int):
         try:
@@ -118,6 +132,10 @@ class UserConnection():
         except psycopg2.Error as err:
             print("Error al actualizar datos: ", err)
             self.conn.rollback()
+
+    #Query para estadisticas basicas
+    def stadistics(self):
+        pass
 
     #Cierra la conexion a la BDD al finalizar la ejecucion
     def __del__(self):

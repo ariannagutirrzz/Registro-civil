@@ -1,4 +1,4 @@
-const modalDelete = (id) => {
+const modalDelete = (table_id) => {
     Swal.fire({
         title: "Are you sure you want to delete this?",
         showDenyButton: true,
@@ -8,7 +8,7 @@ const modalDelete = (id) => {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            axios.delete(`http://localhost:8000/Nacimientos/delete/${id}`)
+            axios.delete(`http://localhost:8000/Nacimientos/delete/${table_id}`)
             .then((response) => {
               console.log(response);
               alert("Nacimiento eliminado correctamente");
