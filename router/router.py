@@ -68,9 +68,7 @@ def readCiudadanos():
 #Ruta para retornar los valores que hay en la tabla Ciudadanos por cedula
 @user.get("/Ciudadanos/read/{cedula}")
 def readCiudadanosID(cedula: int):
-    data = conn.read_by_cedula('"Ciudadanos"', cedula)
-    data = data[0]
-    return data
+    return conn.read_by_cedula('"Ciudadanos"', cedula)
 
 @user.get("/Ciudadanospdf/read/{cedula}")
 def readCiudadanosPdf(cedula: int):
