@@ -41,8 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
           </tr>
         `;
       }).join("");
-      console.log(response,"Response")
-      console.log(ciudadano.cedula)
       const ciudadano = response.data[0];
       document.getElementById("cedula").value = ciudadano.cedula;
       document.getElementById("nacionalidad").value = ciudadano.nacionalidad;
