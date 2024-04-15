@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
                         <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
                         <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
-                        <td><button onClick="modalDelete(${ciudadano.cedula})" class="back-button">Eliminar</button></td>
+                        <td><button onClick="modalDelete('${ciudadano.cedula}')" class="back-button">Eliminar</button></td>
                         <td><a href="../modificar/modificar-ciudadano.html?cedula=${ciudadano.cedula}">Modificar</a></td>
                     </tr>
                 `;
