@@ -44,9 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(response,"Response")
       console.log(ciudadano.cedula)
       const ciudadano = response.data[0];
-      document.getElementById("cedula").value = ciudadano ? ciudadano.cedula : "Dato sin registrar";
-      document.getElementById("nacionalidad").value = ciudadano ? ciudadano.nacionalidad : "Dato sin registrar";
-      document.getElementById("estado_civil").value = ciudadano ? ciudadano.estado_civil : "Dato sin registrar";
+      document.getElementById("cedula").value = ciudadano.cedula;
+      document.getElementById("nacionalidad").value = ciudadano.nacionalidad;
+      document.getElementById("estado_civil").value = ciudadano.estado_civil;
 
       console.log(response);
       alert("Datos mostrados correctamente");
@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Error al mostrar los datos");
     });
 });
+
+
 
       // document.addEventListener("DOMContentLoaded", () => {
       //   axios.get("http://localhost:8000/Ciudadanos/read/${cedula}")
