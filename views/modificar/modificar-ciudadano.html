@@ -10,15 +10,13 @@
     <div>
         <h1>Datos a modificar: </h1>
     <form action="" method="PUT" class="registration-form">
-        <label for="nombre">Nombre: </label>
-        <input type="text" name="nombre" id="nombre" required>
+    
         <label for="cedula">Cedula: </label>
-        <input type="text" name="cedula" id="cedula" required>
-        <label for="sexo">Sexo: </label>
-        <input type="text" name="sexo" id="sexo" required>
+        <input type="text" name="cedula" id="cedula" readonly>
+        <label for="nacionalidad">Nacimiento: </label>
+        <input type="text" name="nacionalidad" id="nacionalidad" readonly>
         <label for="estado_civil">Estado civil: </label>
         <input type="text" name="estado_civil" id="estado_civil" required>
-
         <input type="submit" value="Modificar">
     </form>
     <a href="../tables/ciudadadanos-table.html" class="back-button">Ir atrás</a>
