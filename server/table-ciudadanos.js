@@ -30,28 +30,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const cedula = params.get('cedula');
 
-  axios.get(`http://localhost:8000/Ciudadanos/read/${cedula}`)
-        .then((response) => {
-          document.getElementById("body").innerHTML = response.data.map((ciudadano) => {
-              return `
-                  <tr>
-                      <td>${ciudadano.cedula || "Dato sin registrar"}</td>
-                      <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
-                      <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
-                      <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
-                      <td><button onClick="modalDelete('${ciudadano.cedula}')" class="back-button">Eliminar</button></td>
-                      <td><a href="../modificar/modificar-ciudadano.html?cedula=${ciudadano.cedula}">Modificar</a></td>
-                  </tr>
-              `;
-          }).join("");
-          console.log(response);
-          alert("Datos mostrados correctamente");
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("Error al mostrar los datos");
-        });
+  if (cedula) {
+      axios.get(`http://localhost:8000/Ciudadanos/read/${cedula}`)
+          .then((response) => {
+              document.getElementById("body").innerHTML = response.data.map((ciudadano) => {
+                  return `
+                      <tr>
+                          <td>${ciudadano.cedula || "Dato sin registrar"}</td>
+                          <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
+                          <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
+                          <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
+                          <td><button onClick="modalDelete('${ciudadano.cedula}')" class="back-button">Eliminar</button></td>
+                          <td><a href="../modificar/modificar-ciudadano.html?cedula=${ciudadano.cedula}">Modificar</a></td>
+                      </tr>
+                  `;
+              }).join("");
+              console.log(response);
+              alert("Datos mostrados correctamente");
+          })
+          .catch((error) => {
+              console.error(error);
+              alert("Error al mostrar los datos");
+          });
+  } else {
+      console.error("No se proporcionó un valor de cédula válido");
+      alert("No se proporcionó un valor de cédula válido");
+  }
 });
+
 
 
 // Editar formularios
