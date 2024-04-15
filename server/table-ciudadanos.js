@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
                       <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
                       <td><button onClick="modalDelete(${ciudadano.cedula})" class="back-button">Eliminar</button></td>
                       <td>
-                      <a href="ruta/para/modificar/${ciudadano.cedula}" class="back-button">Modificar</a>
+                      <a href="../views/modificar/modificar-ciudadano.html/${ciudadano.cedula}" class="back-button">Modificar</a>
                       </td>
                   </tr>
               `;
