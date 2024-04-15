@@ -26,54 +26,68 @@ const modalDelete = (cedula) => {
         }
       });
 }
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const cedula = params.get('cedula');
 
-  if (cedula) {
-      axios.get(`http://localhost:8000/Ciudadanos/read/${cedula}`)
+document.addEventListener("DOMContentLoaded", () => {
+  axios.get(`http://localhost:8000/Ciudadanos/read/${cedula}`)
           .then((response) => {
-              document.getElementById("body").innerHTML = response.data.map((ciudadano) => {
-                  return `
-                      <tr>
-                          <td>${ciudadano.cedula || "Dato sin registrar"}</td>
-                          <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
-                          <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
-                          <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
-                          <td><button onClick="modalDelete('${ciudadano.cedula}')" class="back-button">Eliminar</button></td>
-                          <td><a href="../modificar/modificar-ciudadano.html?cedula=${ciudadano.cedula}">Modificar</a></td>
-                      </tr>
-                  `;
-              }).join("");
-              console.log(response);
-              alert("Datos mostrados correctamente");
+            document.getElementById("body").innerHTML = response.data.map((ciudadano) => {
+                return `
+                    <tr>
+                        <td>${ciudadano.cedula || "Dato sin registrar"}</td>
+                        <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
+                        <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
+                        <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
+                        <td><button onClick="modalDelete(${ciudadano.cedula})" class="back-button">Eliminar</button></td>
+                        <td><a href="../modificar/modificar-ciudadano.html?cedula=${ciudadano.cedula}">Modificar</a></td>
+                    </tr>
+                `;
+            }).join("");
+            console.log(response);
+            alert("Datos mostrados correctamente");
           })
           .catch((error) => {
-              console.error(error);
-              alert("Error al mostrar los datos");
+            console.error(error);
+            alert("Error al mostrar los datos");
           });
-  } else {
-      console.error("No se proporcionó un valor de cédula válido");
-      alert("No se proporcionó un valor de cédula válido");
-  }
-});
+      });
 
 
-
+      document.addEventListener("DOMContentLoaded", () => {
+        axios.get("http://localhost:8000/Ciudadanos/read/${cedula}")
+          .then((response) => {
+            const ciudadano = response.data[0]; // Obtener el primer objeto del arreglo
+            document.getElementById("body").innerHTML = `
+              <tr>
+                <td>${ciudadano.cedula || "Dato sin registrar"}</td>
+                <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
+                <td>${ciudadano.estado_civil || "Dato sin registrar"}</td>
+                <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
+                <td><button onClick="modalDelete('${ciudadano.cedula}')" class="back-button">Eliminar</button></td>
+                <td><a href="../modificar/modificar-ciudadano.html?cedula=${ciudadano.cedula}">Modificar</a></td>
+              </tr>`;
+            console.log(response);
+            alert("Datos mostrados correctamente");
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("Error al mostrar los datos");
+          });
+      });
+      
 // Editar formularios
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   axios.get("http://localhost:8000/Ciudadanos/read")
-//       .then((response) => {
-//           // Rellenar los campos del formulario con los datos obtenidos
-//           document.getElementById("cedula").value = response.data.cedula;
-//           document.getElementById("nacionalidad").value = response.data.nacionalidad;
-//           document.getElementById("estado_civil").value = response.data.estado_civil;
+document.addEventListener("DOMContentLoaded", () => {
+  axios.get("http://localhost:8000/Ciudadanos/read")
+      .then((response) => {
+          // Rellenar los campos del formulario con los datos obtenidos
+          document.getElementById("cedula").value = response.data.cedula;
+          document.getElementById("nacionalidad").value = response.data.nacionalidad;
+          document.getElementById("estado_civil").value = response.data.estado_civil;
 
           // Rellenar otros campos del formulario
-//       })
-//       .catch((error) => {
-//           console.error(error);
-//           alert("Error al cargar los datos del ciudadano");
-//       });
-// });
+      })
+      .catch((error) => {
+          console.error(error);
+          alert("Error al cargar los datos del ciudadano");
+      });
+});
