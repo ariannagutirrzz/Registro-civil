@@ -42,7 +42,7 @@ def deleteNacimientos(table_id: int):
     conn.delete_id('"Nacimientos"',table_id)
 
 #Ruta para actulizar algun dato de nacimiento
-@user.put("/Nacimientos/update/{cedula}")
+@user.put("/Nacimientos/update/{table_id}")
 def updateNacimientos(table_id: int, nacimientos: SchemaNacimientosUpdate):
     conn.update_field_id('"Nacimientos"', table_id, dict(nacimientos))
 
