@@ -26,34 +26,35 @@ const modalDelete = (cedula) => {
         }
       });
 }
-
 document.addEventListener("DOMContentLoaded", () => {
   axios.get('http://localhost:8000/Ciudadanos/read')
-          .then((response) => { 
-            document.getElementById("body").innerHTML = response.data.map((ciudadano) => {
-                return `
-                    <tr>
-                        <td>${ciudadano.cedula || "Dato sin registrar"}</td>
-                        <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
-                        <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
-                        <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
-                        <td><button onClick="modalDelete(${ciudadano.cedula})" class="back-button">Eliminar</button></td>
-                        <td><a href="../modificar/modificar-ciudadano.html?cedula=${ciudadano.cedula}">Modificar</a></td>
-                    </tr>
-                `;
-            }).join("");
-            document.getElementById("cedula").value = response.data.cedula;           
-            document.getElementById("nacionalidad").value = response.data.nacionalidad;           
-            document.getElementById("estado_civil").value = response.data.estado_civil;
-            console.log(response);
-            alert("Datos mostrados correctamente");
-          })
-          .catch((error) => {
-            console.error(error);
-            alert("Error al mostrar los datos");
-          });
-      });
+    .then((response) => { 
+      document.getElementById("body").innerHTML = response.data.map((ciudadano) => {
+        return `
+          <tr>
+            <td>${ciudadano.cedula || "Dato sin registrar"}</td>
+            <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
+            <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
+            <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
+            <td><button onClick="modalDelete(${ciudadano.cedula})" class="back-button">Eliminar</button></td>
+            <td><a href="../modificar/modificar-ciudadano.html?cedula=${ciudadano.cedula}">Modificar</a></td>
+          </tr>
+        `;
+      }).join("");
 
+      const ciudadano = response.data[0];
+      document.getElementById("cedula").value = ciudadano ? ciudadano.cedula : "Dato sin registrar";
+      document.getElementById("nacionalidad").value = ciudadano ? ciudadano.nacionalidad : "Dato sin registrar";
+      document.getElementById("estado_civil").value = ciudadano ? ciudadano.estado_civil : "Dato sin registrar";
+
+      console.log(response);
+      alert("Datos mostrados correctamente");
+    })
+    .catch((error) => {
+      console.error(error);
+      alert("Error al mostrar los datos");
+    });
+});
 
       // document.addEventListener("DOMContentLoaded", () => {
       //   axios.get("http://localhost:8000/Ciudadanos/read/${cedula}")
