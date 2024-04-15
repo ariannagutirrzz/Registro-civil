@@ -41,7 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </tr>
         `;
       }).join("");
-
+      console.log(response,"Response")
+      console.log(ciudadano.cedula)
       const ciudadano = response.data[0];
       document.getElementById("cedula").value = ciudadano ? ciudadano.cedula : "Dato sin registrar";
       document.getElementById("nacionalidad").value = ciudadano ? ciudadano.nacionalidad : "Dato sin registrar";

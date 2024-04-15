@@ -5,7 +5,8 @@ def create_PDF(dictValues):
     pdf.add_page()
     pdf.set_font('Arial', 'B', 16)
     pdf.cell(40, 10,'PARTIDA DE NACIMIENTO')
-    pdf.cell(40, 10, f'\nCédula: {dictValues["cedula"]}')
+    pdf.ln(10)  # Nueva línea
+    pdf.cell(40, 10, f'Cédula: {dictValues["cedula"]}')
     pdf.ln(10)  # Nueva línea
     pdf.cell(40, 10, f'Nacionalidad: {dictValues["nacionalidad"]}')
     pdf.ln(10)  # Nueva línea
