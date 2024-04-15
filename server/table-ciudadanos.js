@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  axios.get("http://localhost:8000/Ciudadanos/read")
+  axios.get("http://localhost:8000/Ciudadanos/read/${cedula}")
         .then((response) => {
           document.getElementById("body").innerHTML = response.data.map((ciudadano) => {
               return `
