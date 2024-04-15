@@ -16,9 +16,8 @@ class SchemaNacimientosUpdate(BaseModel):
     parroquia: Optional[str] = None
 
 class SchemaCiudadanosUpdate(BaseModel):
-    nacionalidad: str
     estado_civil: str
-    nacimientos_id: Optional[int] = None
+
 
 class SchemaMatrimoniosUpdate(BaseModel):
     contrayente1_padre1_cedula: Optional[int] = None
