@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-# from fpdf import FPDF
 from schema.schemasTables import SchemaNacimientos, SchemaCiudadanos, SchemaMatrimonios, SchemaDivorcios, SchemaDefunciones
 from schema.schemasUpdates import SchemaCiudadanosUpdate, SchemaMatrimoniosUpdate, SchemaNacimientosUpdate, SchemaDefuncionesUpdate, SchemaDivorciosUpdate
 from config.db import UserConnection
+from pdfgenerator.pdf import create_PDF
 
 user = APIRouter() #Crea un enrutador llamado "user"
 conn = UserConnection() #Instancia de la conexion a la BDD
@@ -35,6 +35,13 @@ def insertNacimientos(nacimientos: SchemaNacimientos):
 def readNacimientos():
     return conn.read('"Nacimientos"')
 
+#Ruta para retornar los valores que hay en la tabla Nacimientos por cedula
+@user.get("/Nacimientos/read/{cedula}")
+def readNacimientosID(cedula: int):
+    data = conn.read_by_cedula('"Nacimientos"', cedula)
+    data = data[0]
+    return data
+
 #Ruta para eliminar algun nacimiento
 @user.delete("/Nacimientos/delete/{id}")
 def deleteNacimientos(id: int):
@@ -58,12 +65,19 @@ def insertCiudadanos(ciudadanos: SchemaCiudadanos):
 def readCiudadanos():
     return conn.read('"Ciudadanos"')
 
-# @user.get("/Ciudadanos/read/{cedula}")
-# def readCiudadanosPdf(cedula: int):
-#     data = conn.read_by_cedula('"Ciudadanos"', cedula)
-#     data = data[0]
-#     create_PDF(data)
-#     return data
+#Ruta para retornar los valores que hay en la tabla Ciudadanos por cedula
+@user.get("/Ciudadanos/read/{cedula}")
+def readCiudadanosID(cedula: int):
+    data = conn.read_by_cedula('"Ciudadanos"', cedula)
+    data = data[0]
+    return data
+
+@user.get("/Ciudadanospdf/read/{cedula}")
+def readCiudadanosPdf(cedula: int):
+    data = conn.read_by_cedula('"Ciudadanos"', cedula)
+    data = data[0]
+    create_PDF(data)
+    return data
 
 #Ruta para eliminar algun ciudadano
 @user.delete("/Ciudadanos/delete/{cedula}")
@@ -90,6 +104,13 @@ def insertMatrimonios(matrimonios: SchemaMatrimonios):
 def readMatrimonios():
     return conn.read('"Matrimonios"') 
 
+#Ruta para retornar los valores que hay en la tabla Matrimonios por id
+@user.get("/Matrimonios/read/{cedula}")
+def readMatrimoniosID(cedula: int):
+    data = conn.read_by_cedula('"Matrimonios"', cedula)
+    data = data[0]
+    return data
+
 #Ruta para eliminar algun matrimonio
 @user.delete("/Matrimonios/delete/{id}")
 def deleteMatrimonios(id: int):
@@ -114,6 +135,13 @@ def insertDivorcios(divorcios: SchemaDivorcios):
 def readDivorcios():
     return conn.read('"Divorcios"')
 
+#Ruta para retornar los valores que hay en la tabla Divorcios por id
+@user.get("/Divorcios/read/{cedula}")
+def readDivorciosID(cedula: int):
+    data = conn.read_by_cedula('"Divorcios"', cedula)
+    data = data[0]
+    return data
+
 #Ruta para eliminar algun divorcio
 @user.delete("/Divorcios/delete/{id}")
 def deleteDivorcios(id: int):
@@ -136,6 +164,13 @@ def insertDefunciones(defunciones: SchemaDefunciones):
 @user.get("/Defunciones/read")
 def readDefunciones():
     return conn.read('"Defunciones"')
+
+#Ruta para retornar los valores que hay en la tabla Defunciones por cedula
+@user.get("/Defunciones/read/{cedula}")
+def readDefuncionesID(cedula: int):
+    data = conn.read_by_cedula('"Defunciones"', cedula)
+    data = data[0]
+    return data
 
 #Ruta para eliminar algun testigo
 @user.delete("/Defunciones/delete/{cedula}")
