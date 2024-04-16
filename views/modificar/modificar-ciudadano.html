@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../styles/modificar/modificar.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Modificacion</title>
 </head>
 <body>
     <div>
         <h1>Datos a modificar: </h1>
-    <form action="" method="PUT" class="registration-form">
-    
+    <form action="" method="PUT" class="registration-form" id="modificar-ciudadanos">
+
         <label for="cedula">Cedula: </label>
         <input type="number" name="cedula" id="cedula" readonly>
-        <label for="nacionalidad">Nacimiento: </label>
+        <label for="nacionalidad">Nacionalidad: </label>
         <input type="text" name="nacionalidad" id="nacionalidad" readonly>
         <label for="estado_civil">Estado civil: </label>
         <input type="text" name="estado_civil" id="estado_civil" required>
@@ -22,6 +23,6 @@
     </form>
     <a href="../tables/ciudadadanos-table.html" class="back-button">Ir atrás</a>
     </div>
-    <script src="../../server/table-ciudadanos.js"></script>
+    <script src="../../server/modificar-ciudadano.js"></script>
 </body>
 </html>

@@ -1,18 +1,12 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+} 
+ 
  /* Styles for the table */
  table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1%;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #f2f2f2;
 }
 
 /* Styles for the container */
@@ -43,7 +37,7 @@ a {
 }
 
 a:hover {
-    background-color: #ddd;
+    background-color: green;
 }
 
 .back-button {
@@ -57,5 +51,58 @@ a:hover {
     border-radius: 5px;
     padding: 10px 20px;
 }
+
+.delele-button {
+    color: white;
+    background-color: #e90606;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.delele-button:hover {
+    background-color: #b40000;
+}
+
+.edit-button {
+    color: white;
+    background-color: #4caf50;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.center {
+    text-align: center;
+}
+
+.margin {
+    margin-left: -56%;
+}
+
+#table-ciudadanos {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #table-ciudadanos th, #table-ciudadanos td {
+    border: 1px solid #ddd; /* Borde gris */
+    padding: 8px; /* Espacio interno */
+  }
+
+  #table-ciudadanos th {
+    background-color: #f2f2f2; 
+  }
 
 
