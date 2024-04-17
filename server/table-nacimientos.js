@@ -99,26 +99,19 @@ document.addEventListener("DOMContentLoaded", () => {
                             nacimiento.padre2_cedula || "Dato sin registrar"
                           }</td>
                           <td>${
-                            nacimiento.testigo1_cedula || "Dato sin registrar"
-                          }</td>
-                          <td>${
-                            nacimiento.testigo2_cedula || "Dato sin registrar"
-                          }</td>
-                          <td>${
                             nacimiento.parroquia || "Dato sin registrar"
                           }</td>
-                          <td>
-                          <button onclick="modalDelete(${
+                          <td><a href="/views/modificar/modificar-nacimiento.html?table_id=${
                             nacimiento.id
-                          })" class="delete-button">Eliminar</button>
-                          <button onclick="modalEditar(${
-                            nacimiento.id
-                          })" class="edit-button">Editar</button>
-                          <button onclick="modalCrearPDF(${
-                            nacimiento.id
-                          })" class="createPDF-button">Generar Certificado</button>
-                      </td>
+                          }" class="edit-button">Modificar</a></td>
 
+                          <td><button onClick="modalDelete(${
+                            nacimiento.id
+                          })" class="delete-button margin">Eliminar</button></td>
+
+                          <td><button onClick="modalCrearPDF(${
+                            nacimiento.id
+                          })" class="createPDF-button margin">Generar Certificado</button></td>
                       </tr>
                   `;
         })
