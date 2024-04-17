@@ -83,6 +83,24 @@ a:hover {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.createPDF-button {
+    color: white;
+    background-color: #3048fa;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.createPDF-button:hover {
+    background-color: #0218bd;
+}
+
 .center {
     text-align: center;
 }

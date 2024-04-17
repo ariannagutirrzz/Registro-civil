@@ -77,6 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td><button onClick="modalDelete(${
                           defuncion.cedula
                         })" class="delete-button margin">Eliminar</button></td>
+                        <td><button onClick="modalCrearPDF(${
+                          defuncion.cedula
+                        })" class="createPDF-button margin">Generar PDF</button></td>
                     </tr>
                 `;
         })
