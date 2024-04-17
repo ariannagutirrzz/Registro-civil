@@ -99,12 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             nacimiento.padre2_cedula || "Dato sin registrar"
                           }</td>
                           <td>${
-                            nacimiento.testigo1_cedula || "Dato sin registrar"
-                          }</td>
-                          <td>${
-                            nacimiento.testigo2_cedula || "Dato sin registrar"
-                          }</td>
-                          <td>${
                             nacimiento.parroquia || "Dato sin registrar"
                           }</td>
                           <td><a href="/views/modificar/modificar-nacimiento.html?table_id=${

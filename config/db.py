@@ -8,9 +8,9 @@ class UserConnection():
         try:
             self.conn = psycopg2.connect(
                 host="localhost",
-                database="Registro_CivilDB", #Nombre de la BDD en tu pc
+                database="Registro_civil", #Nombre de la BDD en tu pc
                 user="postgres", #Nombre del user que tengas en tu pc
-                password="password", #Contrasena que tengas en tu pc
+                password="12345", #Contrasena que tengas en tu pc
             )
         except psycopg2.OperationalError as err:
             print(err)
