@@ -45,7 +45,7 @@ const modalDelete = (cedula) => {
   });
 };
 
-function modalCrearPDF(id) {
+function modalCrearPDF(cedula) {
   Swal.fire({
     title: "¿Estás seguro de que quieres generar un PDF?",
     showCancelButton: true,
