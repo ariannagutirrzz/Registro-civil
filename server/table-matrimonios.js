@@ -1,80 +1,111 @@
-
 const modalDelete = (table_id) => {
-    Swal.fire({
-      title: "¿Estás seguro de que quieres eliminar esto?",
-      showCancelButton: true,
-      confirmButtonText: "Sí, eliminar",
-      confirmButtonColor: "#4caf50",
-      denyButtonText: `No guardar`,
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          axios
-          .delete(`http://localhost:8000/Matrimonios/delete/${table_id}`)
-          .then((response) => {
-            console.log(response);
-            Swal.fire({
-              icon: "success",
-              title: "¡Eliminado!",
-              text: "El matrimonio ha sido eliminado correctamente",
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              toast: true,
-              width: "30%",
-              padding: "1em",
-            }).then(() => {
-              location.reload();
-            });
-          })
-            .catch((error) => {
-              console.error(error);
-              Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Error al eliminar el matrimonio",
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                toast: true,
-                width: "30%",
-                padding: "1em",
-              });
-            });
-            Swal.fire("Deleted!", "", "success");
+  Swal.fire({
+    title: "¿Estás seguro de que quieres eliminar esto?",
+    showCancelButton: true,
+    confirmButtonText: "Sí, eliminar",
+    confirmButtonColor: "#4caf50",
+    denyButtonText: `No guardar`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      axios
+        .delete(`http://localhost:8000/Matrimonios/delete/${table_id}`)
+        .then((response) => {
+          console.log(response);
+          Swal.fire({
+            icon: "success",
+            title: "¡Eliminado!",
+            text: "El matrimonio ha sido eliminado correctamente",
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            toast: true,
+            width: "30%",
+            padding: "1em",
+          }).then(() => {
             location.reload();
-        } else if (result.isDenied) {
-          Swal.fire("Cambios no guardados", "", "info");
-        }
-      });
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Error al eliminar el matrimonio",
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            toast: true,
+            width: "30%",
+            padding: "1em",
+          });
+        });
+      Swal.fire("Deleted!", "", "success");
+      location.reload();
+    } else if (result.isDenied) {
+      Swal.fire("Cambios no guardados", "", "info");
+    }
+  });
+};
+
+function modalCrearPDF(cedula) {
+  Swal.fire({
+    title: "¿Estás seguro de que quieres generar un PDF?",
+    showCancelButton: true,
+    confirmButtonText: "Sí, generar",
+    confirmButtonColor: "#4caf50",
+    denyButtonText: `No guardar`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios
+        .get(`http://localhost:8000/Matrimoniospdf/read/${cedula}`)
+        .then((response) => {
+          console.log(response);
+          const data = response.data;
+          const pdf = new jsPDF();
+          pdf.text(data, 10, 10);
+          pdf.save("defuncion.pdf");
+        });
+      Swal.fire("PDF creado!", "", "success");
+    } else if (result.isDenied) {
+      Swal.fire("Cambios no guardados", "", "info");
+    }
+  });
 }
 document.addEventListener("DOMContentLoaded", () => {
   axios
-  .get("http://localhost:8000/Matrimonios/read")
-  .then((response) => {
-    document.getElementById("body").innerHTML = response.data
-      .map((matrimonio) => {
-        return `
+    .get("http://localhost:8000/Matrimonios/read")
+    .then((response) => {
+      document.getElementById("body").innerHTML = response.data
+        .map((matrimonio) => {
+          return `
                     <tr>
                         <td>${matrimonio.id || "Dato sin registrar"}</td>
-                        <td>${matrimonio.contrayente1_cedula || "Dato sin registrar"} </td>
+                        <td>${
+                          matrimonio.contrayente1_cedula || "Dato sin registrar"
+                        } </td>
                         <td>${
                           matrimonio.contrayente2_cedula || "Dato sin registrar"
                         }</td>
                         <td>${
-                          matrimonio.contrayente1_padre1_cedula || "Dato sin registrar"
+                          matrimonio.contrayente1_padre1_cedula ||
+                          "Dato sin registrar"
                         }</td>
                         <td>${
-                          matrimonio.contrayente1_padre2_cedula || "Dato sin registrar"
+                          matrimonio.contrayente1_padre2_cedula ||
+                          "Dato sin registrar"
                         }</td>
                         <td>${
-                          matrimonio.contrayente2_padre1_cedula || "Dato sin registrar"
+                          matrimonio.contrayente2_padre1_cedula ||
+                          "Dato sin registrar"
                         }</td>
                         <td>${
-                          matrimonio.contrayente2_padre2_cedula || "Dato sin registrar"
+                          matrimonio.contrayente2_padre2_cedula ||
+                          "Dato sin registrar"
                         }</td>
                         <td>${
-                          matrimonio.fecha_ActaMatrimonio || "Dato sin registrar"
+                          matrimonio.fecha_ActaMatrimonio ||
+                          "Dato sin registrar"
                         }</td>
                         <td><a href="/views/modificar/modificar-matrimonio.html?table_id=${
                           matrimonio.id
@@ -86,36 +117,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         <td><button onClick="modalCrearPDF(${
                           matrimonio.id
-                        })" class="createPDF-button margin">Generar PDF</button></td>
+                        })" class="createPDF-button margin">Generar Certificado</button></td>
                     </tr>
                 `;
-      })
-      .join("");
-            console.log(response);
-            Swal.fire({
-              icon: "success",
-              title: "¡Correcto!",
-              text: "Datos mostrados correctamente",
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              toast: true,
-              width: "30%",
-              padding: "1em",
-            });
-          })
-          .catch((error) => {
-            console.error(error);
-            Swal.fire({
-              icon: "error",
-              title: "Error",
-              text: "Error al mostrar los datos",
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              toast: true,
-              width: "30%",
-              padding: "1em",
-            });
-          });
+        })
+        .join("");
+      console.log(response);
+      Swal.fire({
+        icon: "success",
+        title: "¡Correcto!",
+        text: "Datos mostrados correctamente",
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        toast: true,
+        width: "30%",
+        padding: "1em",
       });
+    })
+    .catch((error) => {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error al mostrar los datos",
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        toast: true,
+        width: "30%",
+        padding: "1em",
+      });
+    });
+});

@@ -16,10 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nacimiento.lugar_nacimiento;
       document.getElementById("padre1_cedula").value = nacimiento.padre1_cedula;
       document.getElementById("padre2_cedula").value = nacimiento.padre2_cedula;
-      document.getElementById("testigo1_cedula").value =
-        nacimiento.testigo1_cedula;
-      document.getElementById("testigo2_cedula").value =
-        nacimiento.testigo2_cedula;
+
       document.getElementById("parroquia").value = nacimiento.parroquia;
     })
     .catch((error) => {
@@ -45,6 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const formData = new FormData(miForm);
+
+    // Convertir valores de campos vacíos a 0 (entero) si es necesario
+    for (let pair of formData.entries()) {
+      if (pair[1] === "") {
+        formData.set(pair[0], 0); // Cambiar campo vacío a 0
+      }
+    }
+
     const jsonData = Object.fromEntries(formData);
 
     axios

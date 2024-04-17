@@ -55,10 +55,6 @@ def insertCiudadanos(ciudadanos: SchemaCiudadanos):
     conn.insert_into_table('"Ciudadanos"', data)
     print(data)
 
-#Ruta para retornar los valores que hay en la tabla Ciudadanos
-@user.get("/Ciudadanos/read")
-def readCiudadanos():
-    return conn.read_ciudadano('"Ciudadanos"', '"Nacimientos"')
 
 #Ruta para retornar los valores que hay en la tabla Ciudadanos por cedula
 @user.get("/Ciudadanos/read/{cedula}")
@@ -71,6 +67,11 @@ def readCiudadanosPdf(cedula: int):
     data = conn.read_by_cedula('"Ciudadanos"', cedula)
     data = data[0]
     create_acta_ciudadano(data)
+
+#Ruta para retornar los valores que hay en la tabla Ciudadanos
+@user.get("/Ciudadanos/read")
+def readCiudadanos():
+    return conn.read_ciudadano('"Ciudadanos"', '"Nacimientos"')
 
 #Ruta para eliminar algun ciudadano
 @user.delete("/Ciudadanos/delete/{cedula}")
