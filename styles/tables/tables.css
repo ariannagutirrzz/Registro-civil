@@ -91,32 +91,32 @@ a:hover {
     margin-left: -56%;
 }
 
-#table-ciudadanos {
+.all-tables {
     width: 100%;
     border-collapse: collapse;
   }
 
-  #table-ciudadanos th, #table-ciudadanos td {
+  .all-tables th, .all-tables td {
     border: 1px solid #ddd; /* Borde gris */
     padding: 8px; /* Espacio interno */
   }
 
-  #table-ciudadanos th {
+  .all-tables th {
     background-color: #f2f2f2; 
   }
 
 
-  #table-defunciones {
+  .all-tables {
     width: 100%;
     border-collapse: collapse;
   }
 
-  #table-defunciones th, #table-defunciones td {
+  .all-tables th, .all-tables td {
     border: 1px solid #ddd; /* Borde gris */
     padding: 8px; /* Espacio interno */
   }
 
-  #table-defunciones th {
+  .all-tables th {
     background-color: #f2f2f2; 
   }
 
