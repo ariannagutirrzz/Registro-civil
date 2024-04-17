@@ -17,13 +17,11 @@ class SchemaNacimientos(BaseModel):
     parroquia: Optional[str] = None
 
 class SchemaCiudadanos(BaseModel):
-    cedula: Optional[int] = None
     nacionalidad: str
     estado_civil: str
     nacimientos_id: Optional[int] = None
 
 class SchemaMatrimonios(BaseModel):
-    id: Optional[int] = None
     contrayente1_cedula: Optional[int] = None
     contrayente2_cedula: Optional[int] = None
     contrayente1_padre1_cedula: Optional[int] = None

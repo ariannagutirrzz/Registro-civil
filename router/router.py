@@ -130,7 +130,6 @@ def updateMatrimonios(table_id: int, matrimnoios: SchemaMatrimoniosUpdate):
 @user.post("/Divorcios/insert")
 def insertDivorcios(divorcios: SchemaDivorcios):
     data = dict(divorcios)
-    data.pop("id")
     conn.insert_into_table('"Divorcios"', data)
     print(data)
 
