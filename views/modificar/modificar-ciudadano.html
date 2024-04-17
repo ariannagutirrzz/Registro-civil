@@ -18,7 +18,11 @@
         <label for="nacionalidad">Nacionalidad: </label>
         <input type="text" name="nacionalidad" id="nacionalidad" readonly>
         <label for="estado_civil">Estado civil: </label>
-        <input type="text" name="estado_civil" id="estado_civil" required>
+        <select name="estado_civil" id="estado_civil">
+            <option value="soltero">Soltero</option>
+            <option value="divorciado">Divorciado</option>
+            <option value="casado">Casado</option>
+        </select>
         <input type="submit" value="Modificar">
     </form>
     <a href="../tables/ciudadadanos-table.html" class="back-button">Ir atrás</a>
