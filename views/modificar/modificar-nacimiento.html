@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificacion</title>
     <link rel="stylesheet" href="../../styles/modificar/modificar.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Modificacion</title>
 </head>
 <body>
     <div>
         <h1>Datos a modificar: </h1>
-    <form action="../../controllers/modificaciones/modificar-nacimiento.php" method="POST" class="registration-form">
+    <form action="../../controllers/modificaciones/modificar-nacimiento.php" method="PUT" class="registration-form" id="modificar-nacimientos">
         <label for="nombre">Nombre: </label>
         <input type="text" name="nombre" id="nombre" required>
-        <label for="cedula">Cedula: </label>
-        <input type="text" name="cedula" id="cedula" required>
         <label for="sexo">Sexo: </label>
         <input type="text" name="sexo" id="sexo" required>
         <label for="fecha_nacimiento">Fecha de nacimiento: </label>
         <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+        <label for="hora_nacimiento">Hora de nacimiento: </label>
+        <input type="time" name="hora_nacimiento" id="hora_nacimiento" required>
         <label for="lugar_nacimiento">Lugar de nacimiento: </label>
         <input type="text" name="lugar_nacimiento" id="lugar_nacimiento" required>
-        <label for="cedula_padre">Cedula del padre: </label>
-        <input type="text" name="cedula_padre" id="cedula_padre">
-        <label for="cedula_madre">Cedula de la madre: </label>
-        <input type="text" name="cedula_madre" id="cedula_madre">
-        <label for="cedula_testigo1">Cedula del testigo 1: </label>
-        <input type="text" name="cedula_testigo1" id="cedula_testigo1">
-        <label for="cedula_testigo2">Cedula del testigo 2: </label>
-        <input type="text" name="cedula_testigo2" id="cedula_testigo2">
+        <label for="padre1_cedula">Cedula del padre: </label>
+        <input type="number" name="padre1_cedula" id="padre1_cedula">
+        <label for="padre2_cedula">Cedula de la madre: </label>
+        <input type="number" name="padre2_cedula" id="padre2_cedula">
+        <label for="testigo1_cedula">Cedula del testigo 1: </label>
+        <input type="number" name="testigo1_cedula" id="testigo1_cedula">
+        <label for="testigo2_cedula">Cedula del testigo 2: </label>
+        <input type="number" name="testigo2_cedula" id="testigo2_cedula">
+
+        <label for="parroquia">Parroquia: </label>
+        <input type="text" name="parroquia" id="parroquia">
         <input type="submit" value="Modificar">
     </form>
     <a href="../tables/nacimientos-table.html" class="back-button">Ir atrás</a>
-
     </div>
+    <script src="../../server/modificar/modificar-nacimiento.js"></script>
 </body>
 </html>

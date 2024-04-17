@@ -1,52 +1,105 @@
-
 const modalDelete = (table_id) => {
-    Swal.fire({
-        title: "Are you sure you want to delete this?",
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it",
-        denyButtonText: `Don't save`
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            axios.delete(`http://localhost:8000/Divorcios/delete/${table_id}`)
-            .then((response) => {
-              console.log(response);
-              alert("Divorcio eliminado correctamente");
-            })
-            .catch((error) => {
-              console.error(error);
-              alert("Error al eliminar un divorcio");
-            });
-          Swal.fire("Deleted!", "", "success");
-          location.reload();
-
-        } else if (result.isDenied) {
-          Swal.fire("Changes are not saved", "", "info");
-        }
-      });
-}
+  Swal.fire({
+    title: "¿Estás seguro de que quieres eliminar esto?",
+    showCancelButton: true,
+    confirmButtonText: "Sí, eliminar",
+    confirmButtonColor: "#4caf50",
+    denyButtonText: `No guardar`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios
+        .delete(`http://localhost:8000/Divorcios/delete/${table_id}`)
+        .then((response) => {
+          console.log(response);
+          Swal.fire({
+            icon: "success",
+            title: "¡Eliminado!",
+            text: "El ciudadano ha sido eliminado correctamente",
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            toast: true,
+            width: "30%",
+            padding: "1em",
+          }).then(() => {
+            location.reload();
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Error al eliminar el ciudadano",
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            toast: true,
+            width: "30%",
+            padding: "1em",
+          });
+        });
+      Swal.fire("Deleted!", "", "success");
+      location.reload();
+    } else if (result.isDenied) {
+      Swal.fire("Cambios no guardados", "", "info");
+    }
+  });
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-    axios.get("http://localhost:8000/Divorcios/read")
-          .then((response) => {
-            document.getElementById("body").innerHTML = response.data.map((divorcio) => {
-                return `
+  axios
+    .get("http://localhost:8000/Divorcios/read")
+    .then((response) => {
+      document.getElementById("body").innerHTML = response.data
+        .map((divorcio) => {
+          return `
                     <tr>
                         <td>${divorcio.id}</td>
-                        <td>${divorcio.divorciado1_cedula || "Dato sin registrar"}</td>
-                        <td>${divorcio.divorciado2_cedula || "Dato sin registrar"}</td>
-                        <td>${divorcio.fecha_ActaDivorcio || "Dato sin registrar"} </td>
-                        <td><button onClick="modalDelete(${divorcio.id})" class="back-button">Eliminar</button></td>
-                        <td><button onClick="modalUpdate(${divorcio.id})" class="back-button">Modificar</button></td>
+                        <td>${
+                          divorcio.divorciado1_cedula || "Dato sin registrar"
+                        }</td>
+                        <td>${
+                          divorcio.divorciado2_cedula || "Dato sin registrar"
+                        }</td>
+                        <td>${
+                          divorcio.fecha_ActaDivorcio || "Dato sin registrar"
+                        } </td>
+                        <td><a href="/views/modificar/modificar-divorcio.html?table_id=${
+                          divorcio.id
+                        }" class="edit-button">Modificar</a></td>
+                        <td><button onClick="modalDelete(${
+                          divorcio.id
+                        })" class="delete-button margin">Eliminar</button></td>
                     </tr>
                 `;
-            }).join("");
-            console.log(response);
-            alert("Datos mostrados correctamente");
-          })
-          .catch((error) => {
-            console.error(error);
-            alert("Error al mostrar los datos");
-          });
+        })
+        .join("");
+      console.log(response);
+      Swal.fire({
+        icon: "success",
+        title: "¡Correcto!",
+        text: "Datos mostrados correctamente",
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        toast: true,
+        width: "30%",
+        padding: "1em",
       });
+    })
+    .catch((error) => {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error al mostrar los datos",
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        toast: true,
+        width: "30%",
+        padding: "1em",
+      });
+    });
+});

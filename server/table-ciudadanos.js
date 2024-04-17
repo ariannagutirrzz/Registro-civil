@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }" class="edit-button">Modificar</a></td>
             <td><button onClick="modalDelete(${
               ciudadano.cedula
-            })" class="delele-button margin">Eliminar</button></td>
+            })" class="delete-button margin">Eliminar</button></td>
 
           </tr>
         `;
