@@ -104,19 +104,3 @@ a:hover {
   .all-tables th {
     background-color: #f2f2f2; 
   }
-
-
-  .all-tables {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .all-tables th, .all-tables td {
-    border: 1px solid #ddd; /* Borde gris */
-    padding: 8px; /* Espacio interno */
-  }
-
-  .all-tables th {
-    background-color: #f2f2f2; 
-  }
-
