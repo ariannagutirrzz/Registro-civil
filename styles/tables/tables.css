@@ -106,3 +106,17 @@ a:hover {
   }
 
 
+  #table-defunciones {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #table-defunciones th, #table-defunciones td {
+    border: 1px solid #ddd; /* Borde gris */
+    padding: 8px; /* Espacio interno */
+  }
+
+  #table-defunciones th {
+    background-color: #f2f2f2; 
+  }
+
