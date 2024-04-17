@@ -8,9 +8,9 @@ class UserConnection():
         try:
             self.conn = psycopg2.connect(
                 host="localhost",
-                database="Registro_civil", #Nombre de la BDD en tu pc
-                user="postgres", #Nombre del user que tengas en tu pc
-                password="12345", #Contrasena que tengas en tu pc
+                database="Registro_DB", #Nombre de la BDD en tu pc
+                user="antonio", #Nombre del user que tengas en tu pc
+                password="123456", #Contrasena que tengas en tu pc
             )
         except psycopg2.OperationalError as err:
             print(err)
@@ -79,7 +79,7 @@ class UserConnection():
                     print("Data is None")
         except psycopg2.Error as err:
             print("Error al leer datos: ", err)
-            self.conn.rollback()  
+            self.conn.rollback()
 
     #Query para eliminar datos por id
     def delete_id(self, table_name: str, table_id: int):
