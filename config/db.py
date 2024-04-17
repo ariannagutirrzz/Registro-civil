@@ -1,4 +1,5 @@
 import psycopg2
+from datetime import date
 
 #Clase para la conexion de la base de datos
 class UserConnection():
@@ -148,15 +149,34 @@ class UserConnection():
             self.conn.rollback()
 
     #Query para estadistica del total en una tabla
-    def stadistics(self, table_name: str, condition = None):
+    def stadistics(self, date_start: date, date_end: date, lugar_nacimiento: str, parroquia: str):
         try:
             with self.conn.cursor() as cur:
-                if condition:
-                    query = f"SELECT COUNT(*) FROM public.{table_name} WHERE {condition};"
-                else:
-                    query = f"SELECT COUNT(*) FROM public.{table_name};"
-                cur.execute(query)
-                data = cur.fetchall()
+                queries = [
+                            "SELECT COUNT(*) AS total_nacimientos FROM public.\"Nacimientos\";",
+                            "SELECT COUNT(*) AS total_hombres FROM public.\"Nacimientos\" WHERE sexo = 'Masculino';",
+                            "SELECT COUNT(*) AS total_mujeres FROM public.\"Nacimientos\" WHERE sexo = 'Femenino';",
+                            "SELECT COUNT(*) AS total_otros FROM public.\"Nacimientos\" WHERE sexo = 'Otro';",
+                            f"SELECT COUNT(fecha_nacimiento) AS nacidos_mes FROM public.\"Nacimientos\" WHERE fecha_nacimiento >= TO_DATE('{date_start.strftime('%Y-%m-%d')}', 'YYYY-MM-DD') AND fecha_nacimiento <= TO_DATE('{date_end.strftime('%Y-%m-%d')}', 'YYYY-MM-DD');",
+                            f"SELECT COUNT(lugar_nacimiento) AS nacidos_{lugar_nacimiento} FROM public.\"Nacimientos\" WHERE lugar_nacimiento = '{lugar_nacimiento}';",
+                            f"SELECT COUNT(parroquia) AS nacidos_{parroquia} FROM public.\"Nacimientos\" WHERE parroquia = '{parroquia}';",
+                            "SELECT COUNT(*) AS total_ciudadanos FROM public.\"Ciudadanos\";",
+                            "SELECT COUNT(nacionalidad) AS total_venezolanos FROM public.\"Ciudadanos\" WHERE nacionalidad = 'Venezolana';",
+                            "SELECT COUNT(estado_civil) AS total_solteros FROM public.\"Ciudadanos\" WHERE estado_civil = 'Soltero';",
+                            "SELECT COUNT(estado_civil) AS total_solteros FROM public.\"Ciudadanos\" WHERE estado_civil = 'Casado';",
+                            "SELECT COUNT(estado_civil) AS total_solteros FROM public.\"Ciudadanos\" WHERE estado_civil = 'Divorciado';",
+                            "SELECT COUNT(*) AS total_defunciones FROM public.\"Defunciones\";",
+                            "SELECT COUNT(*) AS total_matrimonios FROM public.\"Matrimonios\";",
+                            "SELECT COUNT(*) AS total_divorcios FROM public.\"Divorcios\";"
+                         ]
+                
+                data = []
+                # Ejecutar cada consulta
+                for query in queries:
+                    cur.execute(query)
+                    result = cur.fetchone()
+                    data.append(result[0])
+
                 if data is not None:
                     return data
                 else:
