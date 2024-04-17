@@ -9,7 +9,7 @@ def create_partida_nacimiento(dictValues: dict):
     pdf.ln(20)  # Nueva línea
     text = f"ACTA Nº '{dictValues['id']} ', primera auditoria civil del municipio Maracaibo del estado Zulia, hace constar que se presentó al Despacho la ciudadana de cédula: '{dictValues['padre1_cedula']}' y expuso que el/la niñ@ que presenta de nombre: '{dictValues['nombre']}' de sexo '{dictValues['sexo']}', Nació en la parroquia '{dictValues['parroquia']}' de '{dictValues['lugar_nacimiento']}', el día '{dictValues['fecha_nacimiento']}' a la hora '{dictValues['hora_nacimiento']}'. Siendo su hij@ y del titular de la cédula: '{dictValues['padre2_cedula']}'. Fueron testigos presénciales de éste acto el/la Ciudadano titular de la cédula: '{dictValues['testigo1_cedula']}' y también el/la de la cédula: '{dictValues['testigo2_cedula']}'. Leída la presente acta a exponentes y testigos manifestaron su conformidad y afirman ."
     pdf.multi_cell(0, 7, text)
-    pdf.output(name='C:\\Users\\iales\\OneDrive\\Escritorio\\dev\\Registro_civilDB\\pdf\\partida_nacimiento.pdf', dest='F')
+    pdf.output(name='C:\\Users\\Arianna Vega\\Desktop\\pdf\\partida_nacimiento.pdf', dest='F')
 
 def create_acta_matrimonio(dictValues: dict):
     pdf = FPDF()

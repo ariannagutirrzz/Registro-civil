@@ -47,6 +47,31 @@ const modalDelete = (table_id) => {
   });
 };
 
+function modalCrearPDF(id) {
+  Swal.fire({
+    title: "¿Estás seguro de que quieres generar un PDF?",
+    showCancelButton: true,
+    confirmButtonText: "Sí, generar",
+    confirmButtonColor: "#4caf50",
+    denyButtonText: `No guardar`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios
+        .get(`http://localhost:8000/Nacimientospdf/read/${id}`)
+        .then((response) => {
+          console.log(response);
+          const data = response.data;
+          const pdf = new jsPDF();
+          pdf.text(data, 10, 10);
+          pdf.save("nacimiento.pdf");
+        });
+      Swal.fire("PDF creado!", "", "success");
+    } else if (result.isDenied) {
+      Swal.fire("Cambios no guardados", "", "info");
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   axios
     .get("http://localhost:8000/Nacimientos/read")
