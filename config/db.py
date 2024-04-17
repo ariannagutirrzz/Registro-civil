@@ -52,6 +52,20 @@ class UserConnection():
         except psycopg2.Error as err:
             print("Error al leer datos: ", err)
             self.conn.rollback()
+
+    def read_ciudadano(self, table_name: str, table_name2: str):
+        try:
+            with self.conn.cursor() as cur:
+                query = f"SELECT cedula, nacionalidad, estado_civil, nacimientos_id, nombre FROM public.{table_name} INNER JOIN public.{table_name2} ON public.{table_name}.nacimientos_id = public.{table_name2}.id;"
+                cur.execute(query)
+                data = self.dictfetchall(cur)
+                if data is not None:
+                    return data
+                else:
+                    print("Data is None")
+        except psycopg2.Error as err:
+            print("Error al leer datos: ", err)
+            self.conn.rollback()
     
     def read_by_cedula(self, table_name: str, cedula: int):
         try:

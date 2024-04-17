@@ -67,6 +67,11 @@ def readCiudadanosPdf(cedula: int):
     data = data[0]
     create_acta_ciudadano(data)
 
+#Ruta para retornar los valores que hay en la tabla Ciudadanos
+@user.get("/Ciudadanos/read")
+def readCiudadanos():
+    return conn.read_ciudadano('"Ciudadanos"', '"Nacimientos"')
+
 #Ruta para eliminar algun ciudadano
 @user.delete("/Ciudadanos/delete/{cedula}")
 def deleteCiudadanos(cedula: int):
