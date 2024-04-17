@@ -2,7 +2,8 @@ from fastapi import APIRouter
 from schema.schemasTables import SchemaNacimientos, SchemaCiudadanos, SchemaMatrimonios, SchemaDivorcios, SchemaDefunciones
 from schema.schemasUpdates import SchemaCiudadanosUpdate, SchemaMatrimoniosUpdate, SchemaNacimientosUpdate, SchemaDefuncionesUpdate, SchemaDivorciosUpdate
 from config.db import UserConnection
-from pdfgenerator.pdf import create_partida_nacimiento, create_acta_matrimonio, create_acta_ciudadano, create_acta_defuncion, create_acta_divorcio
+from pdfgenerator.pdf import create_partida_nacimiento, create_acta_matrimonio, create_acta_ciudadano, create_acta_defuncion, create_acta_divorcio, create_stadistics
+from datetime import date
 
 user = APIRouter() #Crea un enrutador llamado "user"
 conn = UserConnection() #Instancia de la conexion a la BDD
@@ -82,11 +83,6 @@ def deleteCiudadanos(cedula: int):
 def updateCiudadanos(cedula: int, ciudadanos: SchemaCiudadanosUpdate):
     data = dict(ciudadanos)
     conn.update_field_cedula('"Ciudadanos"', cedula, data)
-
-@user.get("/Ciudadanos/estadisticas")
-def stadisticsCiudadanos():
-    data = conn.stadistics('"Ciudadanos"')
-    return data
 
 #MATRIMONIOS
 #Ruta para insertar matrimonios
@@ -198,4 +194,10 @@ def deleteDefunciones(cedula: int):
 @user.put("/Defunciones/update/{cedula}")
 def updateDefunciones(cedula: int, defunciones: SchemaDefuncionesUpdate):
     conn.update_field_cedula('"Defunciones"', cedula, dict(defunciones))
-    
+
+#STATS
+@user.get("/Estadisticas/read")
+def readStats(date_start: date, date_end: date, lugar_nacimiento: str, parroquia: str):
+    data = conn.stadistics(date_start, date_end, lugar_nacimiento, parroquia)
+    create_stadistics(data, date_start, date_end, lugar_nacimiento, parroquia)
+    return data
