@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .map((nacimiento) => {
           return `
                       <tr>
+                      <td>${nacimiento.id || "Dato sin registrar"}</td>
                           <td>${nacimiento.nombre || "Dato sin registrar"}</td>
                           <td>${nacimiento.sexo || "Dato sin registrar"} </td>
                           <td>${
