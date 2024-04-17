@@ -5,12 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro Civil</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script></script>
   </head>
   <body>
     <div class="container">
       <h1>Registro Civil</h1>
       <a href="./views/registro.html" target="_blank">Nuevo Registro</a>
       <a href="./views/listado.html" target="_blank">Listado</a>
+      <button onClick="modalCrearPDF()"class="createPDF-button margin">Generar Certificados</button>
     </div>
   </body>
+  <script>
+
+
+function modalCrearPDF() {
+  Swal.fire({
+    title: "¿Estás seguro de que quieres generar un PDF?",
+    showCancelButton: true,
+    confirmButtonText: "Sí, generar",
+    confirmButtonColor: "#4caf50",
+    denyButtonText: `No guardar`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios
+        .get("http://localhost:8000/Estadisticas/read")
+        .then((response) => {
+          console.log(response);
+          const data = response.data;
+          const pdf = new jsPDF();
+          pdf.text(data, 10, 10);
+          pdf.save("nacimiento.pdf");
+        });
+      Swal.fire("PDF creado!", "", "success");
+    } else if (result.isDenied) {
+      Swal.fire("Cambios no guardados", "", "info");
+    }
+  });
+}
+  </script>
 </html>
