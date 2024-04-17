@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                           <td><button onClick="modalCrearPDF(${
                             nacimiento.id
-                          })" class="createPDF-button margin">Generar PDF</button></td>
+                          })" class="createPDF-button margin">Generar Certificado</button></td>
                       </tr>
                   `;
         })
