@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => {
       console.log(response);
       const matrimonio = response.data[0];
-      document.getElementById("contrayente").value = matrimonio.contrayente1_cedula;
-      document.getElementById("Contrayente 2").value = matrimonio.contrayente2_cedula;
-      document.getElementById("contrayente_padre_1").value = matrimonio.contrayente1_padre1_cedula;
-      document.getElementById("contrayente_padre_2").value = matrimonio.contrayente1_padre2_cedula;
-      document.getElementById("contrayente2_padre_1").value = matrimonio.contrayente2_padre1_cedula;
-      document.getElementById("contrayente2_padre_2").value = matrimonio.contrayente2_padre2_cedula;
+      document.getElementById("contrayente1_cedula").value = matrimonio.contrayente1_cedula;
+      document.getElementById("contrayente2_cedula").value = matrimonio.contrayente2_cedula;
+      document.getElementById("contrayente1_padre1_cedula").value = matrimonio.contrayente1_padre1_cedula;
+      document.getElementById("contrayente1_padre2_cedula").value = matrimonio.contrayente1_padre2_cedula;
+      document.getElementById("contrayente2_padre1_cedula").value = matrimonio.contrayente2_padre1_cedula;
+      document.getElementById("contrayente2_padre2_cedula").value = matrimonio.contrayente2_padre2_cedula;
       document.getElementById("fecha_ActaMatrimonio").value = matrimonio.fecha_ActaMatrimonio;
     })
     .catch((error) => {

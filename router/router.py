@@ -92,7 +92,6 @@ def stadisticsCiudadanos():
 @user.post("/Matrimonios/insert")
 def insertMatrimonios(matrimonios: SchemaMatrimonios):
     data = dict(matrimonios)
-    data.pop("id")
     conn.insert_into_table('"Matrimonios"', data)
     print(data)
 
