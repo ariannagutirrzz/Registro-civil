@@ -1,18 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const table_id = urlParams.get("id");
+  const table_id = urlParams.get("table_id");
   axios
     .get(`http://localhost:8000/Matrimonios/read/${table_id}`)
     .then((response) => {
       console.log(response);
-      const matrimonio = response.data[0];
-      document.getElementById("contrayente1_cedula").value = matrimonio.contrayente1_cedula;
-      document.getElementById("contrayente2_cedula").value = matrimonio.contrayente2_cedula;
-      document.getElementById("contrayente1_padre1_cedula").value = matrimonio.contrayente1_padre1_cedula;
-      document.getElementById("contrayente1_padre2_cedula").value = matrimonio.contrayente1_padre2_cedula;
-      document.getElementById("contrayente2_padre1_cedula").value = matrimonio.contrayente2_padre1_cedula;
-      document.getElementById("contrayente2_padre2_cedula").value = matrimonio.contrayente2_padre2_cedula;
-      document.getElementById("fecha_ActaMatrimonio").value = matrimonio.fecha_ActaMatrimonio;
+      const matrimonio = response.data;
+      document.getElementById("contrayente1_cedula").value =
+        matrimonio.contrayente1_cedula;
+      document.getElementById("contrayente2_cedula").value =
+        matrimonio.contrayente2_cedula;
+      document.getElementById("contrayente1_padre1_cedula").value =
+        matrimonio.contrayente1_padre1_cedula;
+      document.getElementById("contrayente1_padre2_cedula").value =
+        matrimonio.contrayente1_padre2_cedula;
+      document.getElementById("contrayente2_padre1_cedula").value =
+        matrimonio.contrayente2_padre1_cedula;
+      document.getElementById("contrayente2_padre2_cedula").value =
+        matrimonio.contrayente2_padre2_cedula;
+      document.getElementById("fecha_ActaMatrimonio").value =
+        matrimonio.fecha_ActaMatrimonio;
     })
     .catch((error) => {
       console.error(error, "error");

@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificacion</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../../styles/modificar/modificar.css">
 </head>
 <body>
     <div>
         <h1>Datos a modificar: </h1>
     <form action="../../controllers/modificaciones/modificar-matrimonio.php" method="PUT" class="registration-form" id="modificar-matrimonio">
-        <label for="contrayente">Cedula del Contrayente 1: </label>
-        <input type="number" name="contrayente1_cedula" id="contrayente" required>
-        <label for="Contrayente 2">Cedula del Contrayente 2: </label>
-        <input type="number" name="contrayente2_cedula" id="Contrayente 2" required>
-        <label for="contrayente_padre_1">Cedula de la mama del contrayente 1: </label>
-        <input type="number" name="contrayente1_padre1_cedula" id="contrayente_padre_1" required>
-        <label for="contrayente_padre_2">Cedula de el papa del contrayente 1: </label>
-        <input type="number" name="contrayente1_padre2_cedula" id="contrayente_padre_2" required>
-        <label for="contrayente2_padre_1">Cedula de la mama del contrayente 2: </label>
+        <label for="contrayente1_cedula">Cedula del Contrayente 1: </label>
+        <input type="number" name="contrayente1_cedula" id="contrayente1_cedula" required>
+        <label for="contrayente2_cedula 2">Cedula del Contrayente 2: </label>
+        <input type="number" name="contrayente2_cedula" id="contrayente2_cedula" required>
+        <label for="contrayente1_padre1_cedula">Cedula de la mama del contrayente 1: </label>
+        <input type="number" name="contrayente1_padre1_cedula" id="contrayente1_padre1_cedula" required>
+        <label for="contrayente1_padre2_cedula">Cedula de el papa del contrayente 1: </label>
+        <input type="number" name="contrayente1_padre2_cedula" id="contrayente1_padre2_cedula" required>
+        <label for="contrayente2_padre1_cedula">Cedula de la mama del contrayente 2: </label>
       <input
         type="number"
         name="contrayente2_padre1_cedula"
-        id="contrayente2_padre_1"
+        id="contrayente2_padre1_cedula"
       />
-      <label for="contrayente2_padre_2">Cedula de el papa del contrayente 2: </label>
+      <label for="contrayente2_padre2_cedula">Cedula de el papa del contrayente 2: </label>
       <input
         type="number"
         name="contrayente2_padre2_cedula"
-        id="contrayente2_padre_2"
+        id="contrayente2_padre2_cedula"
       />
       <label for="fecha_ActaMatrimonio">Fecha del acta:</label>
       <input type="date" name="fecha_ActaMatrimonio" id="fecha_ActaMatrimonio">
