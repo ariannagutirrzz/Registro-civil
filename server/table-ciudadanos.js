@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${ciudadano.nacionalidad || "Dato sin registrar"}</td>
             <td>${ciudadano.estado_civil || "Dato sin registrar"} </td>
             <td>${ciudadano.nacimientos_id || "Dato sin registrar"}</td>
+            <td>${ciudadano.nombre || "Dato sin registrar"}</td>
             <td><a href="/views/modificar/modificar-ciudadano.html?cedula=${
               ciudadano.cedula
             }" class="edit-button">Modificar</a></td>

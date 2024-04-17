@@ -15,6 +15,9 @@
       method="post"
       id="form-divorcios"
     >
+        <label for="id">Nro de Acta</label>
+        <input type="number" name="id" value="id" />
+
         <label for="cedula_divorciado1">Cedula Esposo: </label>
         <input type="number" name="divorciado1_cedula" id="cedula_divorciado1">
 
@@ -40,6 +43,7 @@
         axios
           .post("http://localhost:8000/Divorcios/insert", jsonData)
           .then((response) => {
+            console.log(jsonData)
             console.log(response);
             alert("Registro exitoso");
           })

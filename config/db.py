@@ -8,9 +8,9 @@ class UserConnection():
         try:
             self.conn = psycopg2.connect(
                 host="localhost",
-                database="Registro_DB", #Nombre de la BDD en tu pc
-                user="antonio", #Nombre del user que tengas en tu pc
-                password="123456", #Contrasena que tengas en tu pc
+                database="RegistroBD", #Nombre de la BDD en tu pc
+                user="postgres", #Nombre del user que tengas en tu pc
+                password="12345", #Contrasena que tengas en tu pc
             )
         except psycopg2.OperationalError as err:
             print(err)
@@ -43,6 +43,20 @@ class UserConnection():
         try:
             with self.conn.cursor() as cur:
                 query = f"SELECT * FROM public.{table_name}"
+                cur.execute(query)
+                data = self.dictfetchall(cur)
+                if data is not None:
+                    return data
+                else:
+                    print("Data is None")
+        except psycopg2.Error as err:
+            print("Error al leer datos: ", err)
+            self.conn.rollback()
+
+    def read_ciudadano(self, table_name: str, table_name2: str):
+        try:
+            with self.conn.cursor() as cur:
+                query = f"SELECT cedula, nacionalidad, estado_civil, nacimientos_id, nombre FROM public.{table_name} INNER JOIN public.{table_name2} ON public.{table_name}.nacimientos_id = public.{table_name2}.id;"
                 cur.execute(query)
                 data = self.dictfetchall(cur)
                 if data is not None:

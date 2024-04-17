@@ -33,7 +33,7 @@ class SchemaMatrimonios(BaseModel):
     fecha_ActaMatrimonio: date
 
 class SchemaDivorcios(BaseModel):
-    id: Optional[int] = None
+    id: int
     divorciado1_cedula: Optional[int] = None
     divorciado2_cedula: Optional[int] = None
     fecha_ActaDivorcio: date

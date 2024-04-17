@@ -57,7 +57,7 @@ def insertCiudadanos(ciudadanos: SchemaCiudadanos):
 #Ruta para retornar los valores que hay en la tabla Ciudadanos
 @user.get("/Ciudadanos/read")
 def readCiudadanos():
-    return conn.read('"Ciudadanos"')
+    return conn.read_ciudadano('"Ciudadanos"', '"Nacimientos"')
 
 #Ruta para retornar los valores que hay en la tabla Ciudadanos por cedula
 @user.get("/Ciudadanos/read/{cedula}")
