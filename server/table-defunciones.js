@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         })" class="delete-button margin">Eliminar</button></td>
                         <td><button onClick="modalCrearPDF(${
                           defuncion.cedula
-                        })" class="createPDF-button margin">Generar PDF</button></td>
+                        })" class="createPDF-button margin">Generar Certificado</button></td>
                     </tr>
                 `;
         })

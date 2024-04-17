@@ -20,7 +20,7 @@ def create_acta_matrimonio(dictValues: dict):
     pdf.ln(20)
     text = f"ACTA Nº '{dictValues['id']}', Este Acta hace constar que los ciudadanos de cédula '{dictValues['contrayente1_cedula']}' y '{dictValues['contrayente2_cedula']}' manifestaron su deseo de contraer matrimonio civil, y acreditaron su capacidad legal para hacerlo. Dicho acto se realiza el día '{dictValues['fecha_ActaMatrimonio']}'. Se citaron para este fin a los padres de ambos contrayentes, los ciudadanos de cédula: '{dictValues['contrayente1_padre1_cedula']}', '{dictValues['contrayente1_padre2_cedula']}', '{dictValues['contrayente2_padre1_cedula']}', '{dictValues['contrayente2_padre2_cedula']}' quienes en presencia del suscrito Notario expresaron su consentimiento al matrimonio."
     pdf.multi_cell(0, 7, text)
-    pdf.output(name='C:\\Users\\iales\\OneDrive\\Escritorio\\dev\\Registro_civilDB\\pdf\\matrimonio.pdf', dest='F')
+    pdf.output(name='C:\\Users\\Arianna Vega\\Desktop\\pdf\\matrimonio.pdf', dest='F')
 
 def create_acta_ciudadano(dictValues: dict):
     pdf = FPDF()
