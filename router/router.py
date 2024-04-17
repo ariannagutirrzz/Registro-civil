@@ -35,7 +35,6 @@ def readNacimientosPdf(table_id: int):
     data = conn.read_by_id('"Nacimientos"', table_id)
     data = data[0]
     create_partida_nacimiento(data)
-    return data
 
 #Ruta para eliminar algun nacimiento
 @user.delete("/Nacimientos/delete/{table_id}")
@@ -71,7 +70,6 @@ def readCiudadanosPdf(cedula: int):
     data = conn.read_by_cedula('"Ciudadanos"', cedula)
     data = data[0]
     create_acta_ciudadano(data)
-    return data
 
 #Ruta para eliminar algun ciudadano
 @user.delete("/Ciudadanos/delete/{cedula}")
@@ -116,7 +114,6 @@ def readMatrimoniosPdf(table_id: int):
     data = conn.read_by_id('"Matrimonios"', table_id)
     data = data[0]
     create_acta_matrimonio(data)
-    return data
 
 #Ruta para eliminar algun matrimonio
 @user.delete("/Matrimonios/delete/{table_id}")
@@ -155,7 +152,6 @@ def readDivorciosPdf(table_id: int):
     data = conn.read_by_id('"Divorcios"', table_id)
     data = data[0]
     create_acta_divorcio(data)
-    return data
 
 #Ruta para eliminar algun divorcio
 @user.delete("/Divorcios/delete/{table_id}")
@@ -193,7 +189,6 @@ def readDefuncionesPdf(cedula: int):
     data = conn.read_by_cedula('"Defunciones"', cedula)
     data = data[0]
     create_acta_defuncion(data)
-    return data
 
 #Ruta para eliminar algunas defuncion
 @user.delete("/Defunciones/delete/{cedula}")
