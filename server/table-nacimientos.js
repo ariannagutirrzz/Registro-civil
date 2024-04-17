@@ -88,6 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
                           <td><button onClick="modalDelete(${
                             nacimiento.id
                           })" class="delete-button margin">Eliminar</button></td>
+
+                          <td><button onClick="modalCrearPDF(${
+                            nacimiento.id
+                          })" class="createPDF-button margin">Generar PDF</button></td>
                       </tr>
                   `;
         })

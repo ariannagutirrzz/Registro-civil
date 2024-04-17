@@ -9,28 +9,33 @@
 <body>
     <div>
         <h1>Datos a modificar: </h1>
-    <form action="../../controllers/modificaciones/modificar-matrimonio.php" method="POST" class="registration-form">
-        <label for="nombre">Nombre: </label>
-        <input type="text" name="nombre" id="nombre" required>
-        <label for="cedula">Cedula: </label>
-        <input type="text" name="cedula" id="cedula" required>
-        <label for="sexo">Sexo: </label>
-        <input type="text" name="sexo" id="sexo" required>
-        <label for="fecha_nacimiento">Fecha de nacimiento: </label>
-        <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
-        <label for="lugar_nacimiento">Lugar de nacimiento: </label>
-        <input type="text" name="lugar_nacimiento" id="lugar_nacimiento" required>
-        <label for="cedula_padre">Cedula del padre: </label>
-        <input type="text" name="cedula_padre" id="cedula_padre">
-        <label for="cedula_madre">Cedula de la madre: </label>
-        <input type="text" name="cedula_madre" id="cedula_madre">
-        <label for="cedula_testigo1">Cedula del testigo 1: </label>
-        <input type="text" name="cedula_testigo1" id="cedula_testigo1">
-        <label for="cedula_testigo2">Cedula del testigo 2: </label>
-        <input type="text" name="cedula_testigo2" id="cedula_testigo2">
+    <form action="../../controllers/modificaciones/modificar-matrimonio.php" method="PUT" class="registration-form" id="modificar-matrimonio">
+        <label for="contrayente">Cedula del Contrayente 1: </label>
+        <input type="number" name="contrayente1_cedula" id="contrayente" required>
+        <label for="Contrayente 2">Cedula del Contrayente 2: </label>
+        <input type="number" name="contrayente2_cedula" id="Contrayente 2" required>
+        <label for="contrayente_padre_1">Cedula de la mama del contrayente 1: </label>
+        <input type="number" name="contrayente1_padre1_cedula" id="contrayente_padre_1" required>
+        <label for="contrayente_padre_2">Cedula de el papa del contrayente 1: </label>
+        <input type="number" name="contrayente1_padre2_cedula" id="contrayente_padre_2" required>
+        <label for="contrayente2_padre_1">Cedula de la mama del contrayente 2: </label>
+      <input
+        type="number"
+        name="contrayente2_padre1_cedula"
+        id="contrayente2_padre_1"
+      />
+      <label for="contrayente2_padre_2">Cedula de el papa del contrayente 2: </label>
+      <input
+        type="number"
+        name="contrayente2_padre2_cedula"
+        id="contrayente2_padre_2"
+      />
+      <label for="fecha_ActaMatrimonio">Fecha del acta:</label>
+      <input type="date" name="fecha_ActaMatrimonio" id="fecha_ActaMatrimonio">
         <input type="submit" value="Modificar">
     </form>
     <a href="../tables/matrimonios-table.html" class="back-button">Ir atrás</a>
     </div>
+    <script src="../../server/modificar/modificar-matrimonio.js"></script>
 </body>
 </html>l

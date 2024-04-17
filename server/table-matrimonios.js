@@ -1,54 +1,121 @@
 
 const modalDelete = (table_id) => {
     Swal.fire({
-        title: "Are you sure you want to delete this?",
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it",
-        denyButtonText: `Don't save`
+      title: "¿Estás seguro de que quieres eliminar esto?",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      confirmButtonColor: "#4caf50",
+      denyButtonText: `No guardar`,
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            axios.delete(`http://localhost:8000/Matrimonios/delete/${table_id}`)
-            .then((response) => {
-              console.log(response);
-              alert("Matrimonio eliminado correctamente");
+          axios
+          .delete(`http://localhost:8000/Matrimonios/delete/${table_id}`)
+          .then((response) => {
+            console.log(response);
+            Swal.fire({
+              icon: "success",
+              title: "¡Eliminado!",
+              text: "El matrimonio ha sido eliminado correctamente",
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              toast: true,
+              width: "30%",
+              padding: "1em",
+            }).then(() => {
               location.reload();
-            })
+            });
+          })
             .catch((error) => {
               console.error(error);
-              alert("Error al eliminar un matrimonio");
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Error al eliminar el matrimonio",
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                toast: true,
+                width: "30%",
+                padding: "1em",
+              });
             });
+            Swal.fire("Deleted!", "", "success");
+            location.reload();
         } else if (result.isDenied) {
-          Swal.fire("Changes are not saved", "", "info");
+          Swal.fire("Cambios no guardados", "", "info");
         }
       });
 }
 document.addEventListener("DOMContentLoaded", () => {
-    axios.get("http://localhost:8000/Matrimonios/read")
-          .then((response) => {
-            console.log(response);
-            document.getElementById("body").innerHTML = response.data.map((matrimonio) => {
-                return `
+  axios
+  .get("http://localhost:8000/Matrimonios/read")
+  .then((response) => {
+    document.getElementById("body").innerHTML = response.data
+      .map((matrimonio) => {
+        return `
                     <tr>
-                        <td>${matrimonio.id}</td>
-                        <td>${matrimonio.contrayente1_cedula || "Dato sin registrar"}</td>
-                        <td>${matrimonio.contrayente2_cedula || "Dato sin registrar"}</td>
-                        <td>${matrimonio.contrayente1_padre1_cedula || "Dato sin registrar"} </td>
-                        <td>${matrimonio.contrayente1_padre2_cedula || "Dato sin registrar"}</td>
-                        <td>${matrimonio.contrayente2_padre1_cedula || "Dato sin registrar"}</td>
-                        <td>${matrimonio.contrayente2_padre2_cedula || "Dato sin registrar"}</td>
-                        <td>${matrimonio.fecha_ActaMatrimonio || "Dato sin registrar"}</td>
-                        <td><button onClick="modalDelete(${matrimonio.id})" class="back-button">Eliminar</button></td>
-                        <td><button onClick="modalUpdate(${matrimonio.id})" class="back-button">Modificar</button></td>
+                        <td>${matrimonio.id || "Dato sin registrar"}</td>
+                        <td>${matrimonio.contrayente1_cedula || "Dato sin registrar"} </td>
+                        <td>${
+                          matrimonio.contrayente2_cedula || "Dato sin registrar"
+                        }</td>
+                        <td>${
+                          matrimonio.contrayente1_padre1_cedula || "Dato sin registrar"
+                        }</td>
+                        <td>${
+                          matrimonio.contrayente1_padre2_cedula || "Dato sin registrar"
+                        }</td>
+                        <td>${
+                          matrimonio.contrayente2_padre1_cedula || "Dato sin registrar"
+                        }</td>
+                        <td>${
+                          matrimonio.contrayente2_padre2_cedula || "Dato sin registrar"
+                        }</td>
+                        <td>${
+                          matrimonio.fecha_ActaMatrimonio || "Dato sin registrar"
+                        }</td>
+                        <td><a href="/views/modificar/modificar-matrimonio.html?table_id=${
+                          matrimonio.id
+                        }" class="edit-button">Modificar</a></td>
+
+                        <td><button onClick="modalDelete(${
+                          matrimonio.id
+                        })" class="delete-button margin">Eliminar</button></td>
+
+                        <td><button onClick="modalCrearPDF(${
+                          matrimonio.id
+                        })" class="createPDF-button margin">Generar PDF</button></td>
                     </tr>
                 `;
-            }).join("");
+      })
+      .join("");
             console.log(response);
-            alert("Datos mostrados correctamente");
+            Swal.fire({
+              icon: "success",
+              title: "¡Correcto!",
+              text: "Datos mostrados correctamente",
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              toast: true,
+              width: "30%",
+              padding: "1em",
+            });
           })
           .catch((error) => {
             console.error(error);
-            alert("Error al mostrar los datos");
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Error al mostrar los datos",
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              toast: true,
+              width: "30%",
+              padding: "1em",
+            });
           });
       });
